@@ -1,11 +1,11 @@
 import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
-import category01 from "assets/images/category-bracelets-01.webp";
-import category02 from "assets/images/category-earrings-01.jpg";
-import category03 from "assets/images/category-gold-set-01.webp";
-import category04 from "assets/images/category-neclaces-01.webp";
-import category05 from "assets/images/category-rings-01.jpg";
-import category06 from "assets/images/category-silver-set-01.webp";
+import category01 from "assets/images/praclete.jpg";
+import category02 from "assets/images/earring.jpg";
+import category03 from "assets/images/goldset.jpg";
+import category04 from "assets/images/neclace.jpg";
+import category05 from "assets/images/ring.jpg";
+import category06 from "assets/images/model4.jpg";
 
 const Categories = () => {
   const data = [
@@ -38,7 +38,7 @@ const Categories = () => {
                 alt={category.title}
                 style={{
                   width: "100%",
-                  height: "100%",
+                  aspectRatio:1,
                   objectFit: "cover",
                   transition: "transform 0.3s ease-in-out",
                 }}

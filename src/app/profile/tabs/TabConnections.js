@@ -79,7 +79,7 @@ const socialAccountsArr = [
 
 const TabConnections = () => {
   return (
-    <Grid container spacing={6}>
+    <Grid container spacing={4}>
       {/* Connected Accounts Cards */}
       <Grid item xs={12} md={6}>
         <Card>

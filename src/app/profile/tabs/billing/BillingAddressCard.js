@@ -48,7 +48,7 @@ const BillingAddressCard = () => {
       <EditDialog open={openEdit} handleClose={handleCloseEdit} id={id} />
       <AddDialog open={open} handleClose={handleClose} />
       <DeleteDialog open={openDel} handleClose={handleCloseDel} id={id} />
-      <Card sx={{ my: 4, boxShadow: 5, py: 2, px: 1 }}>
+      <Card sx={{ my: 4, boxShadow: 0, py: 2, px: 1 }}>
         <CardHeader title={t("Billing Address")} />
         <CardContent>
           {isLoading ? (

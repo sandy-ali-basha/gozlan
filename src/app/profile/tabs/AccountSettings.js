@@ -6,7 +6,6 @@ import {
   Grid,
   Typography,
   CircularProgress,
-  Button,
   Card,
   Container,
   useMediaQuery,
@@ -21,7 +20,6 @@ import TabBilling from "./TabBilling";
 import TabSecurity from "./TabSecurity";
 import TabOrders from "./TabOrders";
 import TabAddresses from "./TabAddresses";
-import TabPoints from "./TabPoints";
 import { useTranslation } from "react-i18next";
 
 const TabList = styled(MuiTabList)(({ theme }) => ({
@@ -98,15 +96,14 @@ const AccountSettings = ({ tab, apiPricingPlanData }) => {
     billing: <TabBilling apiPricingPlanData={apiPricingPlanData} />,
     orders: <TabOrders />,
     addresses: <TabAddresses />,
-    points: <TabPoints />,
   };
 
   return (
     <Container sx={{ mt: 12 }}>
-      <Grid container spacing={6}>
+      <Grid container spacing={4}>
         <Grid item xs={12}>
           <TabContext value={activeTab}>
-            <Grid container spacing={3}>
+            <Grid container spacing={4}>
               <Grid item xs={12}>
                 <TabList
                   variant="scrollable"
@@ -144,7 +141,7 @@ const AccountSettings = ({ tab, apiPricingPlanData }) => {
                       </Box>
                     }
                   />  
-                  {/* <Tab
+                  <Tab
                     value="billing"
                     label={
                       <Box
@@ -158,7 +155,7 @@ const AccountSettings = ({ tab, apiPricingPlanData }) => {
                         {!hideText && t("Billing")}
                       </Box>
                     }
-                  /> */}
+                  />
                   <Tab
                     value="orders"
                     label={
@@ -193,21 +190,7 @@ const AccountSettings = ({ tab, apiPricingPlanData }) => {
                     }
                   />
 
-                  <Tab
-                    value="points"
-                    label={
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          ...(!hideText && { "& svg": { mr: 1 } }),
-                        }}
-                      >
-                        <Icon fontSize="1.25rem" icon="mdi:dollar" />
-                        {!hideText && t("My Points")}
-                      </Box>
-                    }
-                  />
+                  
                 </TabList>
               </Grid>
               <Grid item xs={12}>
@@ -220,7 +203,7 @@ const AccountSettings = ({ tab, apiPricingPlanData }) => {
                       flexDirection: "column",
                       height: "50vh",
                       justifyContent: "center",
-                      boxShadow: 5,
+                      boxShadow:'none'
                     }}
                   >
                     <CircularProgress sx={{ mb: 4 }} />

@@ -6,7 +6,7 @@ import BillingAddressCard from './billing/BillingAddressCard'
 
 const TabAddresses = () => {
   return (
-    <Grid container spacing={6}>
+    <Grid container spacing={4}>
       <Grid item xs={12}>
         <BillingAddressCard />
       </Grid>

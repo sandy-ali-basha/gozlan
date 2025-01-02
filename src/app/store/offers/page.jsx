@@ -1,7 +1,7 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
-import { Container, Divider, Box, Grid } from "@mui/material";
-import img from "assets/images/Special Offers.png";
+import { Divider, Box, Grid } from "@mui/material";
+import img from "assets/images/offers.jpg";
 import ProductCard from "components/modules/ProductCard";
 import { useOffersPage } from "./_hooks/useOffersPage";
 
@@ -9,8 +9,12 @@ export default function Offers() {
   const { data, isLoading, isMobile, t } = useOffersPage();
 
   return (
-    <Container sx={{ pt: 15, minHeight: "100vh" }}>
-      <img src={img} style={{ width: "100%" }} alt="img" />
+    <Box sx={{ minHeight: "100vh", mx: 4 }}>
+      <img
+        src={img}
+        style={{ width: "100%", height: "50vh", objectFit: "cover" }}
+        alt="img"
+      />
       <Typography
         variant="h3"
         color="initial"
@@ -52,6 +56,6 @@ export default function Offers() {
             ))}
         </Grid>
       </Box>
-    </Container>
+    </Box>
   );
 }

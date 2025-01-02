@@ -51,7 +51,7 @@ const FaqFooter = () => {
         will answer to you shortly!
       </Typography>
 
-      <Grid container spacing={6}>
+      <Grid container spacing={4}>
         <Grid item xs={12} md={6}>
           <StyledBox1>
             <Avatar

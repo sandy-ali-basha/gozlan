@@ -151,7 +151,7 @@ const PaymentMethodCard = () => {
       <Card>
         <CardHeader title="Payment Method" />
         <CardContent>
-          <Grid container spacing={6}>
+          <Grid container spacing={4}>
             <Grid item xs={12} md={6}>
               <Grid container spacing={5}>
                 <Grid item xs={12}>
@@ -271,7 +271,6 @@ const PaymentMethodCard = () => {
                   sx={{
                     p: 2,
                     display: "flex",
-                    borderRadius: 3,
                     flexDirection: ["column", "row"],
                     justifyContent: ["space-between"],
                     backgroundColor: "action.hover",
@@ -353,20 +352,22 @@ const PaymentMethodCard = () => {
         onClose={handleEditCardClose}
         aria-labelledby="user-view-billing-edit-card"
         aria-describedby="user-view-billing-edit-card-description"
-        sx={{ "& .MuiPaper-root": { width: "100%", maxWidth: 650 } }}
+        sx={{
+          "& .MuiPaper-root": { width: "100%", maxWidth: 650 },
+          borderRadius: 0,
+        }}
       >
         <DialogTitle
           id="user-view-billing-edit-card"
           sx={{
             textAlign: "center",
-            fontSize: "1.5rem !important",
             px: (theme) => [
-              `${theme.spacing(5)} !important`,
-              `${theme.spacing(15)} !important`,
+              `${theme.spacing(4)} !important`,
+              `${theme.spacing(4)} !important`,
             ],
             pt: (theme) => [
-              `${theme.spacing(8)} !important`,
-              `${theme.spacing(12.5)} !important`,
+              `${theme.spacing(4)} !important`,
+              `${theme.spacing(4)} !important`,
             ],
           }}
         >
@@ -374,10 +375,10 @@ const PaymentMethodCard = () => {
         </DialogTitle>
         <DialogContent
           sx={{
-            pb: (theme) => `${theme.spacing(6)} !important`,
+            pb: (theme) => `${theme.spacing(4)} !important`,
             px: (theme) => [
-              `${theme.spacing(5)} !important`,
-              `${theme.spacing(15)} !important`,
+              `${theme.spacing(4)} !important`,
+              `${theme.spacing(4)} !important`,
             ],
           }}
         >
@@ -390,7 +391,7 @@ const PaymentMethodCard = () => {
           </DialogContentText>
           {selectedCard !== null && (
             <form>
-              <Grid container spacing={6}>
+              <Grid container spacing={4}>
                 <Grid item xs={12}>
                   <CardWrapper sx={{ "& .rccs": { m: "0 auto" } }}>
                     <Cards
@@ -403,7 +404,7 @@ const PaymentMethodCard = () => {
                   </CardWrapper>
                 </Grid>
                 <Grid item xs={12}>
-                  <Grid container spacing={6}>
+                  <Grid container spacing={4}>
                     <Grid item xs={12}>
                       <TextField
                         fullWidth

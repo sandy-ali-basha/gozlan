@@ -15,7 +15,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 // ** Icon Imports
 import { useTranslation } from "react-i18next";
-import { Alert, Button, TextField } from "@mui/material";
+import { Alert, Button, Divider, TextField } from "@mui/material";
 import DeleteAcount from "./components/DeleteAcount";
 import { _AuthApi } from "api/auth";
 import GenderSelect from "components/customs/GenderSelect";
@@ -37,12 +37,12 @@ const TabAccount = () => {
       .string()
       .matches(phoneRegExp, t("Enter a valid phone number"))
       .required(t("Phone number is required")),
-      age: yup
+    age: yup
       .number()
       .required(t("Age is required"))
       .min(18, t("You must be at least 18 years old"))
       .max(150, t("Age must not be more than 150 years")),
-    
+
     gender: yup
       .string()
       .required(t("Gender is required"))
@@ -136,7 +136,7 @@ const TabAccount = () => {
       .update(data?.user_id, input)
       .then((res) => {
         console.log("res", res);
-        if (res?.data?.code == 200) {
+        if (res?.data?.code === 200) {
           setMessage("updated succesfully");
         } else {
           setError(res?.error || "An unexpected error occurred");
@@ -147,12 +147,12 @@ const TabAccount = () => {
   };
 
   const formOptions = { resolver: yupResolver(schema) };
-  const { register, handleSubmit, formState, control } = useForm(formOptions);
+  const { register, handleSubmit, formState } = useForm(formOptions);
   const { errors } = formState;
 
   return (
     <>
-      <Grid container spacing={6}>
+      <Grid container spacing={4}>
         {/* Account Details Card */}
         <Grid item xs={12}>
           <Card>
@@ -160,7 +160,7 @@ const TabAccount = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
               <CardContent>
                 <Box onSubmit={handleSubmit(onSubmit)} component="form">
-                  <Grid container spacing={2}>
+                  <Grid container spacing={4}>
                     {details.map((item, index) => (
                       <Grid item xs={6} key={index}>
                         <TextField
@@ -210,6 +210,7 @@ const TabAccount = () => {
           </Card>
         </Grid>
       </Grid>
+      <Divider />
       <DeleteAcount />
     </>
   );

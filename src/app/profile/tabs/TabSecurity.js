@@ -6,7 +6,7 @@ import ChangePasswordCard from './security/ChangePasswordCard'
 
 const TabSecurity = () => {
   return (
-    <Grid container spacing={6}>
+    <Grid container spacing={4}>
       <Grid item xs={12}>
         <ChangePasswordCard />
       </Grid> 

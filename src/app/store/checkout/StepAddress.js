@@ -116,7 +116,7 @@ const StepAddress = ({
 
   return (
     <Container>
-      <Grid container spacing={6}>
+      <Grid container spacing={4}>
         <Grid item xs={12} lg={8}>
           <Typography sx={{ mb: 4 }} variant="h6">
             {t("Select your preferable address")}

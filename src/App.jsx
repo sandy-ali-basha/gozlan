@@ -24,8 +24,6 @@ import { HttpRequestInterceptor } from "interceptor/http-request.interceptor";
 import ThemeProviderWrapper from "./ThemeProviderWrapper";
 import Layout from "layout/Layout";
 import Profile from "app/profile/Profile";
-import Careers from "app/careers/page";
-import Job from "app/careers/job/page";
 import ForgetPassword from "app/(authentication)/forgetPassword/ForgetPassword";
 import ResetPassword from "app/(authentication)/forgetPassword/ResetPassword";
 import Brand from "app/store/categories/brand/[name]/page";
@@ -140,9 +138,6 @@ function App() {
           <Route path="/blog/:id" element={<BlogPost />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/faq" element={<FAQ />} />
-          <Route path="/careers" element={<Careers />} />
-          <Route path="/careers/job/:id" element={<Job />} />
-
           <Route
             path="/store/categories"
             exact

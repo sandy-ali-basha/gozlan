@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react"; // Correct import
 import { Autoplay } from "swiper/modules"; // Import Lazy module
-import sliderImg from "assets/images/slide.jpg";
+import sliderImg from "assets/images/slide (1).jpg";
 import Banner from "./home/Banner";
 import ProductCard from "components/modules/ProductCard";
 import productImg4 from "assets/images/products/product (1).jpg";

@@ -92,6 +92,14 @@ const theme = createTheme({
         },
       },
     },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          boxShadow: 'none',
+          background: 'transparent',
+        },
+      },
+    },
     MuiCheckbox: {
       styleOverrides: {
         root: {

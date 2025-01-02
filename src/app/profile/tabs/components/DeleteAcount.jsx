@@ -83,7 +83,7 @@ const DeleteAccount = () => {
   const { errors } = formState;
 
   return (
-    <Grid container spacing={6} sx={{ mt: 1 }}>
+    <Grid container spacing={4} sx={{ mt: 1 }}>
       {/* //* Delete Account Card */}
       <Grid item xs={12}>
         <Card>

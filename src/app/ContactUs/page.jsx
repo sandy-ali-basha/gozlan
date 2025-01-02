@@ -91,7 +91,7 @@ export default function ContactUs() {
           )}
         </Typography>
       </Box>
-      <Grid container spacing={5}>
+      <Grid container spacing={4}>
         <Grid item md="6">
           <Box
             sx={{

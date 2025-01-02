@@ -62,7 +62,7 @@ const StepPayment = ({ handleNext }) => {
 
   return (
     <Container>
-      <Grid container spacing={6}>
+      <Grid container spacing={4}>
         <Grid item xs={12} lg={8}>
           <Typography variant="h5" sx={{ ms: 5, mb: 3 }} color="text.primary">
             {t("Pleas Choose Payment method")}
