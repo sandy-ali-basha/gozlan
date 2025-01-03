@@ -1,11 +1,14 @@
-import { Box, Divider, Grid, Typography } from "@mui/material";
+import { Box, Button, Divider, Grid, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react"; // Correct import
 import { Autoplay } from "swiper/modules"; // Import Lazy module
 import sliderImg from "assets/images/slide (1).jpg";
+import sliderImg2 from "assets/images/products/IMG_0707 copy.jpg";
 import Banner from "./home/Banner";
 import ProductCard from "components/modules/ProductCard";
+import image2 from "assets/images/products/earrings.jpg";
+import image3 from "assets/images/products/banner.jpg";
 import productImg4 from "assets/images/products/product (1).jpg";
 import productImg3 from "assets/images/products/product (2).jpg";
 import productImg2 from "assets/images/products/product (3).jpg";
@@ -13,8 +16,8 @@ import productImg1 from "assets/images/products/product (4).jpg";
 import productImg0 from "assets/images/products/product (6).jpg";
 import Categories from "./home/Categories";
 import OfferSection from "./home/OfferSection";
-import diamond from "assets/images/banner-07.webp";
-import craftedBuety from "assets/images/banner-09.webp";
+import banner2 from "assets/images/products/banner5.jpg";
+import banner1 from "assets/images/products/earrings.jpg";
 
 export default function Home() {
   const { t } = useTranslation("index");
@@ -80,21 +83,21 @@ export default function Home() {
       discount: "8%",
     },
   ];
-const banners = [
+  const banners = [
     {
       id: 1,
       title: "Diamonds are forever—and so are you",
       subtitle: "Embrace the Unseen Magic of Uniqueness...",
       buttonText: "SHOP COLLECTION",
-      backgroundImage: diamond, // Replace with your image path
       saleText: "CYBER MONDAY SALE",
+      backgroundImage: banner2,
     },
     {
       id: 2,
       title: "Crafted Beauty",
       subtitle: "Beautiful pieces to pass down for generations...",
       buttonText: "SHOP COLLECTION",
-      backgroundImage: craftedBuety, // Replace with your image path
+      backgroundImage: banner1,
       saleText: "CYBER MONDAY SALE",
     },
   ];
@@ -114,12 +117,6 @@ const banners = [
               sx={{
                 position: "relative",
                 aspectRatio: "16/9",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "white",
-                textAlign: "center",
               }}
             >
               <img
@@ -130,7 +127,6 @@ const banners = [
                   width: "100%",
                   height: "100%",
                   position: "absolute",
-                  
                 }}
                 lazy
               />
@@ -138,14 +134,91 @@ const banners = [
                 sx={{
                   position: "relative",
                   zIndex: 1,
-                  width: { md: "80%", xs: "100%" },
+                  background: "#ffffff39",
+                  px: 4,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  color: "black",
+                  textAlign: "center",
+                  width: "100%",
+                  height: "100%",
                 }}
               >
-                <Typography variant="h4" color="white">
+                <Typography
+                  variant="h4"
+                  color="text.primary"
+                  sx={{ width: { xs: "100%", md: "70%" } }}
+                >
                   Discover the timeless beauty of Gozlan Jewelry—where artistry
                   meets sophistication.
                 </Typography>
-                <Typography variant="p" color="white">
+                <Typography
+                  variant="p"
+                  color="text.primary"
+                  sx={{ width: { xs: "100%", md: "70%" } }}
+                >
+                  Explore our exclusive collection, crafted to celebrate your
+                  unique style and elevate every moment with unparalleled
+                  brilliance.
+                </Typography>
+                <br />
+                <Link sx={{ mt: 4 }} href={"/"}>
+                  {t("Shop collection")}
+                </Link>
+              </Box>
+            </Box>
+          </Link>
+        </SwiperSlide>
+        <SwiperSlide>
+          <Link to={"/"}>
+            <Box
+              sx={{
+                position: "relative",
+                aspectRatio: "16/9",
+              }}
+            >
+              <img
+                src={sliderImg2}
+                alt={`Slide`}
+                style={{
+                  objectFit: "cover",
+                  width: "100%",
+                  height: "100%",
+                  position: "absolute",
+                }}
+                lazy
+              />
+              <Box
+                sx={{
+                  position: "relative",
+                  zIndex: 1,
+                  background: "#ffffff39",
+                  px: 4,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  color: "black",
+                  textAlign: "center",
+                  width: "100%",
+                  height: "100%",
+                }}
+              >
+                <Typography
+                  variant="h4"
+                  color="text.primary"
+                  sx={{ width: { xs: "100%", md: "70%" } }}
+                >
+                  Discover the timeless beauty of Gozlan Jewelry—where artistry
+                  meets sophistication.
+                </Typography>
+                <Typography
+                  variant="p"
+                  color="text.primary"
+                  sx={{ width: { xs: "100%", md: "70%" } }}
+                >
                   Explore our exclusive collection, crafted to celebrate your
                   unique style and elevate every moment with unparalleled
                   brilliance.
@@ -163,7 +236,96 @@ const banners = [
       <Divider></Divider>
       <Categories />
       <Divider></Divider>
-      <Box sx={{ py: 4, px: 4 }}>
+      <Grid container sx={{ p: 4 }} spacing={4}>
+        <Grid item md="6">
+          <Box
+            sx={{
+              position: "relative",
+              overflow: "hidden",
+              height: "80vh",
+              backgroundImage: `url(${image3})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              display: "flex",
+              alignItems: "flex-end",
+              padding: "1.5rem",
+              color: "white",
+              "&:hover": {
+                backgroundBlendMode: "lighten",
+                backgroundColor: "rgba(255, 255, 255, 0.3)",
+                transition: "all 0.3s ease",
+              },
+            }}
+          >
+            <Box sx={{ maxWidth: "70%" }}>
+              <Typography
+                variant="h5"
+                sx={{ fontWeight: "bold", marginTop: "0.5rem" }}
+              >
+                STYLE AND TREND JEWELRY OF MEN'S FASHION
+              </Typography>
+
+              <Button
+                variant="text"
+                sx={{
+                  color: "primary.main",
+                  textDecoration: "underline",
+                  fontWeight: "bold",
+                  padding: "0",
+                  fontSize: "14px",
+                }}
+              >
+                Discover
+              </Button>
+            </Box>
+          </Box>
+        </Grid>
+        <Grid item md="6">
+          <Box
+            sx={{
+              position: "relative",
+              overflow: "hidden",
+              height: "80vh",
+              backgroundImage: `url(${image2})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              display: "flex",
+              alignItems: "flex-end",
+              padding: "1.5rem",
+              color: "white",
+              "&:hover": {
+                backgroundBlendMode: "lighten",
+                backgroundColor: "rgba(255, 255, 255, 0.3)",
+                transition: "all 0.3s ease",
+              },
+            }}
+          >
+            <Box sx={{ maxWidth: "70%" }}>
+              <Typography
+                variant="h5"
+                sx={{ fontWeight: "bold", marginTop: "0.5rem" }}
+              >
+                STYLE AND TREND JEWELRY OF MEN'S FASHION
+              </Typography>
+
+              <Button
+                variant="text"
+                sx={{
+                  color: "primary.main",
+                  textDecoration: "underline",
+                  fontWeight: "bold",
+                  padding: "0",
+                  fontSize: "14px",
+                }}
+              >
+                Discover
+              </Button>
+            </Box>
+          </Box>
+        </Grid>
+      </Grid>
+      <Divider></Divider>
+      <Box sx={{ p: 4 }}>
         <Typography variant="h6" sx={{ pb: 2 }}>
           Our Best Sellers
         </Typography>
@@ -185,7 +347,7 @@ const banners = [
         </Grid>
       </Box>
       <Divider></Divider>
-      <OfferSection banners={banners}/>
+      <OfferSection banners={banners} />
     </Box>
   );
 }

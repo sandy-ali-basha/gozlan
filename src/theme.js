@@ -3,8 +3,9 @@ import { createTheme } from "@mui/material/styles";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#DCC69D", // Main accent color
-      red: "#e92a2f",
+      main: "#e92a2f", // Main accent color
+      red: "#bb2226",
+      light: "#f0787b",
     },
     secondary: {
       main: "#36332F", // Supporting secondary color
@@ -17,7 +18,7 @@ const theme = createTheme({
       primary: "#2E2E2E", // Main text color
       secondary: "#999999", // Muted text color
       disabled: "#d1d1d1", // Disabled text color
-      white:'#FDFDFC'
+      white: "#FDFDFC",
     },
     grey: {
       100: "#F7F7F7",
@@ -61,15 +62,59 @@ const theme = createTheme({
     },
   },
   components: {
+    MuiTabs: {
+      styleOverrides: {
+        root: {
+          border: "0 !important",
+          "&, & .MuiTabs-scroller": {
+            boxSizing: "content-box",
+            padding: "10px 10px 16px",
+            margin: "-10px -10px -16px !important",
+          },
+          "& .MuiTabs-indicator": {
+            display: "none",
+          },
+        },
+      },
+    },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          minWidth: 65,
+          minHeight: 38,
+          lineHeight: 1,
+          "&:hover": {
+            color: "#e92a2f",
+          },
+          "&.Mui-selected": {
+            border: "1px solid #f0787b",
+            color: "#e92a2f !important",
+          },
+          "@media (min-width: 960px)": {
+            minWidth: 130,
+          },
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
           textTransform: "uppercase",
           color: "#2E2E2E",
-          borderRadius:'0px',
+          borderRadius: "0px",
           borderColor: "#2E2E2E",
           "&:hover": {
             color: "#e92a2f",
+          },
+        },
+      },
+    },
+    MuiStepLabel: {
+      styleOverrides: {
+        label: {
+          "&.Mui-active": {
+            color: "#e92a2f", // Red color for active step
+            fontWeight: "bold",
           },
         },
       },
@@ -95,8 +140,8 @@ const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          boxShadow: 'none',
-          background: 'transparent',
+          boxShadow: "none",
+          background: "transparent",
         },
       },
     },
@@ -127,6 +172,17 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: 0, // Removes border radius for other types of inputs
+        },
+      },
+    },
+   
+    MuiStepRoot: {
+      styleOverrides: {
+        label: {
+          "&.Mui-active": {
+            color: "#e92a2f", // Active step label color
+            fontWeight: "bold", // Optional: Make it bold for emphasis
+          },
         },
       },
     },

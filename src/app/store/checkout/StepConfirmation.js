@@ -54,7 +54,6 @@ const StyledList = styled(List)(({ theme }) => ({
 const HorizontalList = styled(List)(({ theme }) => ({
   padding: 0,
   display: "flex",
-  borderRadius: 6,
   border: `1px solid ${theme.palette.divider}`,
   "& .MuiListItem-root": {
     padding: theme.spacing(6),
@@ -212,9 +211,7 @@ const StepConfirmation = ({ orderResponse }) => {
           <Box
             sx={{
               mb: 4,
-              borderRadius: 3,
               border: (theme) => `1px solid ${theme.palette.divider}`,
-              boxShadow: 3,
             }}
           >
             <CardContent>

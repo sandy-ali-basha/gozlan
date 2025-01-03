@@ -9,13 +9,26 @@ import CardContent from "@mui/material/CardContent";
 import Tabs from "@mui/material/Tabs";
 import TabPanel from "@mui/lab/TabPanel";
 import TabContext from "@mui/lab/TabContext";
-import { Chip, Container, TextField } from "@mui/material";
+import {
+  Alert,
+  AlertTitle,
+  Chip,
+  Collapse,
+  Container,
+  Divider,
+  Fade,
+  FormControlLabel,
+  IconButton,
+  Switch,
+  TextField,
+} from "@mui/material";
 import { ValueStore } from "store/categoryStore";
 import { useTranslation } from "react-i18next";
-import { CreditCard, Money, MoneyRounded, QrCode } from "@mui/icons-material";
+import { Close, CreditCard, Money } from "@mui/icons-material";
 import { useCart } from "hooks/cart/useCart";
 import { AddressStore } from "store/shippingStore";
 import Loader from "components/modules/Loader";
+import { useEffect, useState } from "react";
 
 const CustomTabList = styled(Tabs)(({ theme }) => ({
   borderBottom: "0 !important",
@@ -28,7 +41,6 @@ const CustomTabList = styled(Tabs)(({ theme }) => ({
     display: "none",
   },
   "& .Mui-selected": {
-    boxShadow: theme.shadows[2],
     backgroundColor: theme.palette.primary.main,
     color: `${theme.palette.common.white} !important`,
   },
@@ -36,7 +48,6 @@ const CustomTabList = styled(Tabs)(({ theme }) => ({
     minWidth: 81,
     minHeight: 38,
     lineHeight: 1,
-    borderRadius: theme.shape.borderRadius,
     "&:hover": {
       color: theme.palette.primary.main,
     },
@@ -59,11 +70,50 @@ const StepPayment = ({ handleNext }) => {
   const { data: cartData, isLoading: cartIsLoading } = useCart(cart_id);
 
   const shippingAddress = AddressStore((state) => state.shippingAddress);
-
+  const [openFade, setOpenFade] = useState(true);
+  const [openCollapse, setOpenCollapse] = useState(true);
+  useEffect(() => {
+    if (!openFade) {
+      setTimeout(() => {
+        setOpenCollapse(false);
+      }, 300);
+    }
+  }, [openFade]);
   return (
     <Container>
       <Grid container spacing={4}>
         <Grid item xs={12} lg={8}>
+          <Collapse in={openCollapse}>
+            <Fade in={openFade} timeout={{ exit: 300 }}>
+              <Alert
+                icon={<Close />}
+                sx={{ my: 4, borderRadius: 0 }}
+                action={
+                  <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    size="small"
+                    variant="outlined"
+                    onClick={() => {
+                      setOpenFade(false);
+                    }}
+                  >
+                    <i className="tabler-x" />
+                  </IconButton>
+                }
+              >
+                <AlertTitle>Available Offers</AlertTitle>
+                <Typography color="success.main">
+                  - 10% Instant Discount on Bank of America Corp Bank Debit and
+                  Credit cards
+                </Typography>
+                <Typography color="success.main">
+                  - 25% Cashback Voucher of up to $60 on first ever PayPal
+                  transaction. TCA
+                </Typography>
+              </Alert>
+            </Fade>
+          </Collapse>
           <Typography variant="h5" sx={{ ms: 5, mb: 3 }} color="text.primary">
             {t("Pleas Choose Payment method")}
           </Typography>
@@ -74,53 +124,80 @@ const StepPayment = ({ handleNext }) => {
               onChange={handleChange}
               aria-label="customized tabs example"
             >
-              <Tab
-                value="fib"
-                label={t("FIB")}
-                icon={<QrCode sx={{ fontSize: "4rem" }} />}
-              />
-              <Tab
-                value="cash-in-hand"
-                label={t("Cash On Delivery")}
-                icon={<MoneyRounded sx={{ fontSize: "4rem" }} />}
-              />
-              {/* <Tab value="gc" label={t("Gift Card")} /> */}
+              <Tab value="fib" label={t("FIB")} />
+              <Tab value="credit-card" label="Card" />
+              <Tab value="cash-in-hand" label={t("Cash On Delivery")} />
+              <Tab value="gc" label={t("Gift Card")} />
             </CustomTabList>
             <Grid container sx={{ mt: 2 }}>
               <Grid item md={8} xs={12}>
-                <TabPanel
-                  value="fib"
-                  sx={{ px: 3, borderRadius: 3, boxShadow: 3 }}
-                >
-                  <CreditCard />
+                <TabPanel value="fib" sx={{ px: 3 }}>
                   <Typography sx={{ mb: 4 }}>
                     {t(
-                      "card is a type of payment method where the recipient make payment for the order at the time of delivery rather than in advance."
+                      "FIB is a type of payment method where the recipient make payment for the order at the time of delivery rather than in advance."
                     )}
                   </Typography>
-                  <Button variant="contained" onClick={handleNext}>
+                  <Button variant="outlined" onClick={handleNext}>
                     {t("Pay With FIB")}
                   </Button>
                 </TabPanel>
-                <TabPanel
-                  value="cash-in-hand"
-                  sx={{ px: 3, borderRadius: 3, boxShadow: 3 }}
-                >
-                  <Money />
+                <TabPanel value="credit-card">
+                  <form>
+                    <Grid container spacing={6}>
+                      <Grid item xs={12}>
+                        <TextField
+                          fullWidth
+                          type="number"
+                          label="Card Number"
+                          placeholder="0000 0000 0000 0000"
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={6}>
+                        <TextField
+                          fullWidth
+                          label="Name"
+                          placeholder="John Doe"
+                        />
+                      </Grid>
+                      <Grid item xs={6} sm={3}>
+                        <TextField
+                          fullWidth
+                          label="Expiry Date"
+                          placeholder="MM/YY"
+                        />
+                      </Grid>
+                      <Grid item xs={6} sm={3}>
+                        <TextField fullWidth label="CVV" placeholder="123" />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <FormControlLabel
+                          control={<Switch defaultChecked />}
+                          label="Save Card for future billing?"
+                        />
+                      </Grid>
+                      <Grid item xs={12} className="flex gap-4">
+                        <Button variant="outlined">Checkout</Button>
+                        <Button type="reset" variant="tonal" color="secondary">
+                          Reset
+                        </Button>
+                      </Grid>
+                    </Grid>
+                  </form>
+                </TabPanel>
+                <TabPanel value="cash-in-hand" sx={{ px: 3 }}>
+                  
                   <Typography sx={{ mb: 4 }}>
                     {t(
                       "Cash on Delivery is a type of payment method where the recipient make payment for the order at the time of delivery rather than in advance."
                     )}
                   </Typography>
-                  <Button variant="contained" onClick={handleNext}>
+                  <Button variant="outlined" onClick={handleNext}>
                     {t("Pay On Delivery")}
                   </Button>
                 </TabPanel>
+
                 {/*//* Gift Card  */}
-                <TabPanel
-                  value="gc"
-                  sx={{ px: 3, borderRadius: 3, boxShadow: 3 }}
-                >
+                <TabPanel value="gc" sx={{ px: 3 }}>
                   <Typography sx={{ mb: 4, fontWeight: 500 }}>
                     Enter Gift Card Details
                   </Typography>
@@ -142,7 +219,7 @@ const StepPayment = ({ handleNext }) => {
                       />
                     </Grid>
                     <Grid item xs={12}>
-                      <Button variant="contained" onClick={handleNext}>
+                      <Button variant="outlined" onClick={handleNext}>
                         Redeem Gift Card
                       </Button>
                     </Grid>
@@ -153,12 +230,7 @@ const StepPayment = ({ handleNext }) => {
           </TabContext>
         </Grid>
         <Grid item xs={12} lg={4}>
-          <Box
-            sx={{
-              borderRadius: 3,
-              boxShadow: 3,
-            }}
-          >
+          <Box>
             <CardContent>
               <Typography sx={{ mb: 4 }} variant="h6">
                 {t("Price Details")}
@@ -172,7 +244,7 @@ const StepPayment = ({ handleNext }) => {
                     {/* bag total */}
                     <Box
                       sx={{
-                        mb: 2,
+                        my: 2,
                         gap: 2,
                         display: "flex",
                         flexWrap: "wrap",
@@ -186,9 +258,11 @@ const StepPayment = ({ handleNext }) => {
                         {t("currency")}
                       </Typography>
                     </Box>
+                    <Divider />
                     <Box
                       sx={{
                         gap: 2,
+                        my: 2,
                         display: "flex",
                         flexWrap: "wrap",
                         alignItems: "center",
@@ -208,16 +282,18 @@ const StepPayment = ({ handleNext }) => {
                             {t("currency")}
                           </div>
                         )}
+
                         {shippingAddress?.shipping_price === 0 && (
                           <Chip color="success" label={t("FREE")}></Chip>
                         )}
                       </Box>
                     </Box>
+                    <Divider />
                     {/* discount_amount */}
                     {cartData?.data?.discount_amount > 0 && (
                       <Box
                         sx={{
-                          mb: 2,
+                          my: 2,
                           gap: 2,
                           display: "flex",
                           flexWrap: "wrap",

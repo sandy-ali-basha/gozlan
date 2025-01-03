@@ -127,8 +127,6 @@ const CustomRadioBasic = (props) => {
             p: 4,
             height: "100%",
             display: "flex",
-            borderRadius: 3,
-            boxShadow: 3,
             cursor: "pointer",
             position: "relative",
             alignItems: "flex-start",

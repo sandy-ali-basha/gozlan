@@ -26,8 +26,7 @@ import { useQueryClient } from "react-query";
 import Swal from "sweetalert2";
 import ApplyCoupon from "./_components/ApplyCoupon";
 import ApplyPoints from "./_components/ApplyPoints";
-import emptyCart from "assets/images/empty-cart.webp";
-import BestSellers from "components/modules/home/BestSellers";
+import emptyCart from "assets/images/empty-cart.png";
 import Simillar from "../product/[id]/_components/Simllar";
 
 const StyledList = styled(List)(({ theme }) => ({
@@ -69,7 +68,7 @@ const StepCart = ({ handleNext }) => {
         queryClient.invalidateQueries("cart");
         const currentCartCount =
           parseInt(localStorage.getItem("cart_count")) || 0;
-          localStorage.setItem("cart_count", Math.max(currentCartCount - 1, 0));
+        localStorage.setItem("cart_count", Math.max(currentCartCount - 1, 0));
         Swal.fire({
           icon: "success",
           title: "Success",
@@ -104,8 +103,10 @@ const StepCart = ({ handleNext }) => {
         flexDirection: "column",
       }}
     >
-      <img alt=" " src={emptyCart} style={{ width: "40vw" }} />
-      <Typography>{t("Your shopping page is empty")}</Typography>
+      <Typography variant="h6" sx={{ pb: 4 }}>
+        {t("Your shopping Cart is empty")}
+      </Typography>
+      <img alt=" " src={emptyCart} style={{ width: "10vw" }} />
     </Card>
   ) : (
     <Container>
@@ -133,12 +134,15 @@ const StepCart = ({ handleNext }) => {
                   }}
                 >
                   <img alt=" " src={emptyCart} style={{ width: "40vw" }} />
-                  <Typography>{t("Your shopping page is empty")}{data?.data?.products?.length}</Typography>
+                  <Typography>
+                    {t("Your shopping page is empty")}
+                    {data?.data?.products?.length}
+                  </Typography>
                 </Card>
               )}
               <StyledList>
                 {isLoading ? (
-                  <ListItem sx={{ boxShadow: 3, borderRadius: 3, my: 2 }}>
+                  <ListItem sx={{ my: 2 }}>
                     <Grid container sx={{ mx: 1 }}>
                       <Grid item xs={12} md={4}>
                         <CardShimmer
@@ -155,128 +159,131 @@ const StepCart = ({ handleNext }) => {
                 ) : (
                   data?.data?.products?.length > 0 &&
                   data?.data?.products?.map((item, idx) => (
-                    <ListItem
-                      key={idx}
-                      sx={{ boxShadow: 3, borderRadius: 3, my: 2 }}
-                    >
-                      <ListItemAvatar
-                        key={item?.product_id}
-                        sx={{
-                          display: "flex",
-                          borderRadius: 3,
-                          width: "15%",
-                        }}
-                      >
-                        <img
-                          style={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "cover",
-                            borderRadius: "inherit",
+                    <>
+                      <ListItem key={idx} sx={{ my: 2 }}>
+                        <ListItemAvatar
+                          key={item?.product_id}
+                          sx={{
+                            display: "flex",
+                            borderRadius: 3,
+                            width: "15%",
                           }}
-                          src={item?.images[0]?.image_path}
-                          alt={item?.name}
-                        />
-                      </ListItemAvatar>
-                      <IconButton
-                        size="small"
-                        className="remove-item"
-                        sx={{ color: "text.primary" }}
-                        onClick={() => handleDeleteItem(item?.id)}
-                      >
-                        <Icon icon="tabler:x" fontSize={20} />
-                      </IconButton>
-                      <Grid container sx={{ mx: 1 }}>
-                        <Grid item xs={12} md={8}>
-                          <Link
-                            to={`/store/product/${item?.id}/${item.name}`}
-                            style={{ textDecoration: "none" }}
-                          >
-                            <ListItemText primary={item?.name} />
-                          </Link>
-                          <Box sx={{ display: "flex", alignItems: "center" }}>
-                            <Typography sx={{ mr: 1, color: "text.disabled" }}>
-                              {t("Sold By")}:
-                            </Typography>
-                            <Typography
-                              component={Link}
-                              to={`/store/categories/brand/${item?.brand?.id}`}
+                        >
+                          <img
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              objectFit: "cover",
+                              borderRadius: "inherit",
+                            }}
+                            src={item?.images[0]?.image_path}
+                            alt={item?.name}
+                          />
+                        </ListItemAvatar>
+                        <IconButton
+                          size="small"
+                          className="remove-item"
+                          sx={{ color: "text.primary" }}
+                          onClick={() => handleDeleteItem(item?.id)}
+                        >
+                          <Icon icon="tabler:x" fontSize={20} />
+                        </IconButton>
+                        <Grid container sx={{ mx: 1 }}>
+                          <Grid item xs={12} md={8}>
+                            <Link
+                              to={`/store/product/${item?.id}/${item.name}`}
+                              style={{ textDecoration: "none" }}
+                            >
+                              <ListItemText primary={item?.name} />
+                            </Link>
+                            <Box sx={{ display: "flex", alignItems: "center" }}>
+                              <Typography
+                                sx={{ mr: 1, color: "text.disabled" }}
+                              >
+                                {t("Sold By")}:
+                              </Typography>
+                              <Typography
+                                component={Link}
+                                to={`/store/categories/brand/${item?.brand?.id}`}
+                                sx={{
+                                  mr: 2,
+                                  color: "primary.main",
+                                  textDecoration: "none",
+                                }}
+                              >
+                                {item?.brand?.name}
+                              </Typography>
+                              <Chip
+                                sx={{borderRadius:0}}
+                                size="small"
+                                skin="light"
+                                variant="outlined"
+                                color={item?.stock > 0 ? "success" : "warning"}
+                                label={
+                                  item?.stock > 10
+                                    ? t("In Stock")
+                                    : item?.stock === 1
+                                    ? t("Only 1 unit left")
+                                    : item?.stock > 1 && item?.stock <= 10
+                                    ? t("Few units left")
+                                    : t("Out Of Stock")
+                                }
+                              />
+                            </Box>
+                            <Box sx={{ display: "flex" }}>
+                              <Box>
+                                {item?.compare_price > 0 && (
+                                  <Typography
+                                    variant="body1"
+                                    sx={{
+                                      textDecoration: item?.compare_price
+                                        ? "line-through"
+                                        : "none",
+                                      fontSize: item?.compare_price
+                                        ? "small"
+                                        : "inherit",
+                                    }}
+                                    color={
+                                      item?.compare_price
+                                        ? "text.secondary"
+                                        : "initial"
+                                    }
+                                  >
+                                    item?.compare_price {t("currency")}
+                                  </Typography>
+                                )}
+                                {item?.price > 0 && (
+                                  <Typography variant="body1" color="initial">
+                                    {item?.price.toLocaleString()}{" "}
+                                    {t("currency")}
+                                  </Typography>
+                                )}
+                              </Box>
+                            </Box>
+                          </Grid>
+                          <Grid item xs={12} md={4} sx={{ mt: [4, 4, 6] }}>
+                            <Box
                               sx={{
-                                mr: 2,
-                                color: "primary.main",
-                                textDecoration: "none",
+                                gap: 1,
+                                height: "100%",
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "center",
+                                alignItems: "flex-end",
                               }}
                             >
-                              {item?.brand?.name}
-                            </Typography>
-                            <Chip
-                              rounded
-                              size="small"
-                              skin="light"
-                              color={item?.stock > 0 ? "success" : "warning"}
-                              label={
-                                item?.stock > 10
-                                  ? t("In Stock")
-                                  : item?.stock === 1
-                                  ? t("Only 1 unit left")
-                                  : item?.stock > 1 && item?.stock <= 10
-                                  ? t("Few units left")
-                                  : t("Out Of Stock")
-                              }
-                            />
-                          </Box>
-                          <Box sx={{ display: "flex" }}>
-                            <Box>
-                              {item?.compare_price > 0 && (
-                                <Typography
-                                  variant="body1"
-                                  sx={{
-                                    textDecoration: item?.compare_price
-                                      ? "line-through"
-                                      : "none",
-                                    fontSize: item?.compare_price
-                                      ? "small"
-                                      : "inherit",
-                                  }}
-                                  color={
-                                    item?.compare_price
-                                      ? "text.secondary"
-                                      : "initial"
-                                  }
-                                >
-                                  item?.compare_price {t("currency")}
-                                </Typography>
-                              )}
-                              {item?.price > 0 && (
-                                <Typography variant="body1" color="initial">
-                                  {item?.price.toLocaleString()}{" "}
-                                  {t("currency")}
-                                </Typography>
-                              )}
+                              <QuantityInput
+                                productID={item?.id}
+                                quantity={item?.quantity}
+                                max={item?.stock}
+                                cartID={cart_id}
+                              />
                             </Box>
-                          </Box>
+                          </Grid>
                         </Grid>
-                        <Grid item xs={12} md={4} sx={{ mt: [4, 4, 6] }}>
-                          <Box
-                            sx={{
-                              gap: 1,
-                              height: "100%",
-                              display: "flex",
-                              flexDirection: "column",
-                              justifyContent: "center",
-                              alignItems: "flex-end",
-                            }}
-                          >
-                            <QuantityInput
-                              productID={item?.id}
-                              quantity={item?.quantity}
-                              max={item?.stock}
-                              cartID={cart_id}
-                            />
-                          </Box>
-                        </Grid>
-                      </Grid>
-                    </ListItem>
+                      </ListItem>
+                      <Divider />
+                    </>
                   ))
                 )}
               </StyledList>
@@ -288,8 +295,6 @@ const StepCart = ({ handleNext }) => {
             <Box
               sx={{
                 mb: 2,
-                borderRadius: 3,
-                boxShadow: 3,
               }}
             >
               <CardContent>
@@ -394,8 +399,7 @@ const StepCart = ({ handleNext }) => {
                             : "initial",
                       }}
                     >
-                      {data?.data?.sub_total.toLocaleString()}{" "}
-                      {t("currency")}
+                      {data?.data?.sub_total.toLocaleString()} {t("currency")}
                     </Typography>
 
                     {data?.data?.points_used > 0 && (
@@ -406,7 +410,8 @@ const StepCart = ({ handleNext }) => {
                           textDecoration: "none",
                         }}
                       >
-                        {data?.data?.sub_total_after_points.toLocaleString()} {t("currency")}
+                        {data?.data?.sub_total_after_points.toLocaleString()}{" "}
+                        {t("currency")}
                       </Typography>
                     )}
                   </Box>
@@ -421,9 +426,8 @@ const StepCart = ({ handleNext }) => {
             >
               <Button
                 fullWidth={!breakpointMD}
-                variant="contained"
+                variant="outlined"
                 onClick={handleNext}
-                sx={{ borderRadius: 3 }}
                 color="secondary"
                 disabled={!userData}
               >
@@ -433,7 +437,7 @@ const StepCart = ({ handleNext }) => {
           </Grid>
         )}
       </Grid>
-      <Simillar id={data?.data?.products[0]?.id}/>
+      <Simillar id={data?.data?.products[0]?.id} />
     </Container>
   );
 };

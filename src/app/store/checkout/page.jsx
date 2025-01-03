@@ -23,6 +23,7 @@ import { ValueStore } from "store/categoryStore";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@emotion/react";
 import StepperWrapper from "./_components/StepperWrapper";
+import { KeyboardArrowLeftRounded, KeyboardArrowRightRounded } from "@mui/icons-material";
 
 // ** Styled Stepper Component
 const Stepper = styled(MuiStepper)(({ theme }) => ({
@@ -90,12 +91,12 @@ const Checkout = () => {
   // Main function to handle the order and initiate polling
   const handleNext = async () => {
     if (activeStep === 2) {
-      console.log("order")
+      console.log("order");
       // StepAddress is active
       const addressId = selectedBasicRadio;
       const userData = JSON.parse(localStorage.getItem("userData"));
       const cart_id = JSON.parse(localStorage.getItem("cart_id"));
-  
+
       if (!orderId) {
         const orderData = {
           address_id: addressId,
@@ -121,7 +122,7 @@ const Checkout = () => {
                 imageAlt: "QR Code",
                 allowEscapeKey: false, // Prevents closing by pressing Escape
                 allowEnterKey: false, // Prevents closing by pressing Enter
-                showCloseButton: true, 
+                showCloseButton: true,
                 didOpen: () => {
                   setOpendFIB(true);
                 },
@@ -155,7 +156,7 @@ const Checkout = () => {
           }
         });
       } else {
-        console.log("UpdateOrder")
+        console.log("UpdateOrder");
         const orderData = {
           payment_method: value,
         };
@@ -174,7 +175,7 @@ const Checkout = () => {
                 imageAlt: "QR Code",
                 allowEscapeKey: false, // Prevents closing by pressing Escape
                 allowEnterKey: false, // Prevents closing by pressing Enter
-                showCloseButton: true, 
+                showCloseButton: true,
                 didOpen: () => {
                   setOpendFIB(true);
                 },
@@ -236,15 +237,15 @@ const Checkout = () => {
 
   return (
     <Card>
-      <CardContent sx={{ pt: 11, pb: 5 }}>
+      <CardContent sx={{ p: 4 }}>
         <StepperWrapper>
           <Stepper
             activeStep={activeStep}
             connector={
               theme.direction === "ltr" ? (
-                <KeyboardDoubleArrowRightRoundedIcon />
-              ) : (
-                <KeyboardDoubleArrowLeftIcon />
+                <KeyboardArrowRightRounded />
+              ) : ( 
+                <KeyboardArrowLeftRounded />
               )
             }
           >
@@ -252,9 +253,7 @@ const Checkout = () => {
               return (
                 <Step key={index}>
                   <StepLabel icon={<></>}>
-                    {step.icon}
                     <Typography
-                      className="step-title"
                       sx={{ display: { md: "block", xs: "none" } }}
                     >
                       {step.title}

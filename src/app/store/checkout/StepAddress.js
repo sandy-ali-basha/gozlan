@@ -138,7 +138,7 @@ const StepAddress = ({
           </Button>
         </Grid>
         <Grid item xs={12} lg={4}>
-          <Card sx={{ mb: 4, borderRadius: 3, boxShadow: 3 }}>
+          <Card sx={{ mb: 4 }}>
             <CardContent>
               <List>
                 {cartIsLoading ? (
@@ -159,46 +159,44 @@ const StepAddress = ({
                 ) : (
                   cartData?.data?.products?.length > 0 &&
                   cartData?.data?.products?.map((item, idx) => (
-                    <ListItem
-                      key={idx}
-                      sx={{ boxShadow: 1, borderRadius: 3, my: 2 }}
-                    >
-                      <ListItemAvatar
-                        key={item?.id}
-                        sx={{
-                          display: "flex",
-                          borderRadius: 3,
-                          width: "20%",
-                        }}
-                      >
-                        <img
-                          style={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "cover",
-                            borderRadius: "inherit",
+                    <>
+                     {idx > 0 && <Divider />} 
+                      <ListItem key={idx} sx={{ my: 2 }}>
+                        <ListItemAvatar
+                          key={item?.id}
+                          sx={{
+                            display: "flex",
+                            width: "20%",
                           }}
-                          src={item?.images[0]?.image_path}
-                          alt={item?.name}
-                        />
-                      </ListItemAvatar>
-                      <Grid container sx={{ mx: 1 }}>
-                        <Grid item xs={12} md={8}>
-                          <Link
-                            to={`/store/product/${item?.id}/${item.name}`}
-                            style={{ textDecoration: "none" }}
-                          >
-                            <ListItemText primary={item?.name} />
-                          </Link>
+                        >
+                          <img
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              objectFit: "cover",
+                            }}
+                            src={item?.images[0]?.image_path}
+                            alt={item?.name}
+                          />
+                        </ListItemAvatar>
+                        <Grid container sx={{ mx: 1 }}>
+                          <Grid item xs={12} md={8}>
+                            <Link
+                              to={`/store/product/${item?.id}/${item.name}`}
+                              style={{ textDecoration: "none" }}
+                            >
+                              <ListItemText primary={item?.name} />
+                            </Link>
 
-                          <Box sx={{ display: "flex" }}>
-                            <Typography sx={{ color: "text.main" }}>
-                              {item?.price.toLocaleString()} {t("currency")}
-                            </Typography>
-                          </Box>
+                            <Box sx={{ display: "flex" }}>
+                              <Typography sx={{ color: "text.main" }}>
+                                {item?.price.toLocaleString()} {t("currency")}
+                              </Typography>
+                            </Box>
+                          </Grid>
                         </Grid>
-                      </Grid>
-                    </ListItem>
+                      </ListItem>
+                    </>
                   ))
                 )}
               </List>
@@ -222,7 +220,8 @@ const StepAddress = ({
                 >
                   <Typography>{t("Sub Total")}</Typography>
                   <Typography sx={{ color: "text.secondary" }}>
-                    {(cartData?.data?.sub_total/1000).toFixed(3)} {t("currency")}
+                    {(cartData?.data?.sub_total / 1000).toFixed(3)}{" "}
+                    {t("currency")}
                   </Typography>
                 </Box>
                 <Box
@@ -243,14 +242,14 @@ const StepAddress = ({
                   >
                     {shippingAddress?.shipping_price > 0 && (
                       <div>
-                        {(shippingAddress?.shipping_price/1000).toFixed(3)}
+                        {(shippingAddress?.shipping_price / 1000).toFixed(3)}
                         {t("currency")}
                       </div>
                     )}
                     {shippingAddress?.shipping_price === 0 && (
                       <Chip color="success" label={t("FREE")}></Chip>
                     )}
-                  </Box>  
+                  </Box>
                 </Box>
                 {/* discount_amount */}
                 {cartData?.data?.discount_amount > 0 && (
@@ -266,7 +265,8 @@ const StepAddress = ({
                   >
                     <Typography>{t("Discount Amount")}</Typography>
                     <Typography variant="body1" sx={{ color: "primary.main" }}>
-                      {cartData?.data?.sub_total_after_discount.toLocaleString()} {t("currency")}
+                      {cartData?.data?.sub_total_after_discount.toLocaleString()}{" "}
+                      {t("currency")}
                     </Typography>
                   </Box>
                 )}
@@ -284,7 +284,8 @@ const StepAddress = ({
                   >
                     <Typography>{t("Sub Total After Points Used")}</Typography>
                     <Typography variant="body1" color="secondary">
-                      {cartData?.data?.sub_total_after_points.toLocaleString()} {t("currency")}
+                      {cartData?.data?.sub_total_after_points.toLocaleString()}{" "}
+                      {t("currency")}
                     </Typography>
                   </Box>
                 )}
@@ -299,9 +300,9 @@ const StepAddress = ({
           >
             <Button
               fullWidth={!breakpointMD}
-              variant="contained"
+              variant="outlined"
               onClick={handleNext}
-              sx={{ borderRadius: 3, boxShadow: 3 }}
+              sx={{}}
               disabled={!selectedBasicRadio}
             >
               {t("Place Order")}

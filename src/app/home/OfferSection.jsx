@@ -12,7 +12,7 @@ const OfferSection = ({banners}) => {
                 position: "relative",
                 overflow: "hidden",
                 height: "250px",
-                backgroundImage: `url(${banner.backgroundImage})`,
+                backgroundImage: `url(${banner?.backgroundImage})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 display: "flex",
@@ -21,7 +21,7 @@ const OfferSection = ({banners}) => {
                 color: "white",
                 "&:hover": {
                   backgroundBlendMode: "darken",
-                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  backgroundColor: "rgba(255, 255, 255, 0.5)",
                   transition: "all 0.3s ease",
                 },
               }}
