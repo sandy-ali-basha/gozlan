@@ -31,14 +31,12 @@ import ShouldNotBeLogged from "middlewares/ShouldNotBeLogged";
 import NotFound from "components/NotFound";
 import ShouldBeLogged from "middlewares/ShouldBeLogged";
 import GoogleCallback from "app/(authentication)/Login/GoogleCallback";
-import ChooseCityDialog from "components/ChooseCityDialog";
 import CookieConsent from "components/CookieConsent";
 
 function App() {
   useEffect(() => {
     HttpRequestInterceptor();
     window.scrollTo(0, 0);
-    // localStorage.setItem("i18nextLng", "en");
   }, []);
 
   return (
@@ -47,34 +45,27 @@ function App() {
         <title>gozlan </title>
         <meta
           name="description"
-          content="gozlan offers a wide range of medical products. Shop online with us for quality and affordable healthcare products."
+          content="Discover a stunning collection of jewelry at Gozlan. Shop online for timeless designs and affordable luxury."
         />
         <meta
           name="keywords"
-          content="medical products, healthcare, online store, gozlan"
+          content="jewelry, luxury, online store, rings, necklaces, bracelets, Gozlan"
         />
-        <meta
-          property="og:title"
-          content="gozlan "
-        />
+        <meta property="og:title" content="Gozlan - Timeless Jewelry" />
         <meta
           property="og:description"
-          content="Explore a wide range of quality medical products at gozlan."
+          content="Explore our exquisite jewelry collection. Find your perfect piece today at Gozlan."
         />
         <meta property="og:image" content="URL_of_featured_image" />
         <meta property="og:url" content="https://gozlan.com" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="gozlan "
-        />
+        <meta name="twitter:title" content="Gozlan - Timeless Jewelry" />
         <meta
           name="twitter:description"
-          content="Explore a wide range of quality medical products at gozlan."
+          content="Explore our exquisite jewelry collection. Find your perfect piece today at Gozlan."
         />
       </Helmet>
-      <ChooseCityDialog />
       <CookieConsent />
       <Routes>
         <Route
@@ -147,7 +138,10 @@ function App() {
           <Route path="/store" element={<StoreCategoryPage />} />
           <Route path="/store/checkout" element={<StoreCheckoutPage />} />
           <Route path="/store/offers" element={<StoreOffersPage />} />
-          <Route path="/store/product/:id/:name" element={<StoreProductPage />} />
+          <Route
+            path="/store/product/:id/:name"
+            element={<StoreProductPage />}
+          />
           <Route path="/terms/:id" element={<TermsPage />} />
         </Route>
         <Route path="*" element={<NotFound />} />

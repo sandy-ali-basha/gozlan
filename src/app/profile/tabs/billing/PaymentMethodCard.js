@@ -330,7 +330,7 @@ const PaymentMethodCard = () => {
             <Grid item xs={12}>
               <Button
                 type="submit"
-                variant="contained"
+                 variant="outlined"
                 sx={{ mr: 2, color: "white" }}
               >
                 Save Changes
@@ -533,7 +533,7 @@ const PaymentMethodCard = () => {
           }}
         >
           <Button
-            variant="contained"
+             variant="outlined"
             sx={{ mr: 2 }}
             onClick={handleEditCardClose}
           >

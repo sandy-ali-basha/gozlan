@@ -12,7 +12,7 @@ import {
     return (
       <Button
         {...rest}
-        variant="contained"
+         variant="outlined"
         disabled={disableOnLoading === true && loading}
       >
         {props.loading && (

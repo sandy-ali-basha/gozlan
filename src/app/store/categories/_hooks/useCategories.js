@@ -16,6 +16,7 @@ export const useCategories = () => {
   const { data, isLoading } = useAttributes();
   const brandsTabIndex = data?.product_attributes?.length;
   const { t } = useTranslation("index");
+  
   const { data: AttrValuesData, isLoading: AttrValuesLoading } = useQuery(
     ["_Attributes_values", selectedCategoryId],
     () =>

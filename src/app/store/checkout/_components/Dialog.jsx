@@ -62,7 +62,7 @@ const DeleteDialog = ({ id, page, count }) => {
         <DialogActions>
           <Button onClick={handleClose}>{t("Disagree")}</Button>
           {loading && <Loader />}
-          <Button autoFocus sx={{}} variant="contained" onClick={DeleteProduct}>
+          <Button autoFocus sx={{}}  variant="outlined" onClick={DeleteProduct}>
             {t("Agree")}
           </Button>
         </DialogActions>

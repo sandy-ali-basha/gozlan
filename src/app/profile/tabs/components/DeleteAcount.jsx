@@ -125,7 +125,7 @@ const DeleteAccount = () => {
                 </FormControl>
               </Box>
               <Button
-                variant="contained"
+                 variant="outlined"
                 color="error"
                 type="submit"
                 disabled={errors.checkbox !== undefined}
@@ -158,7 +158,7 @@ const DeleteAccount = () => {
         </DialogContent>
         <DialogActions sx={{ p: 4 }}>
           <Button
-            variant="contained"
+             variant="outlined"
             sx={{ mr: 2 }}
             onClick={() => handleConfirmation("yes")}
           >
@@ -211,7 +211,7 @@ const DeleteAccount = () => {
         </DialogContent>
         <DialogActions sx={{ p: 4 }}>
           <Button
-            variant="contained"
+             variant="outlined"
             color="success"
             onClick={handleSecondDialogClose}
           >

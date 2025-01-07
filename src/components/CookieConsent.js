@@ -36,23 +36,22 @@ const CookieConsent = () => {
 // Styles for the popup and button
 const popupStyle = {
   position: "fixed",
-  bottom: "20px",
-  left: "20px",
+  bottom: "2vw",
+  left: "2vw",
   backgroundColor: "#fff",
   color: "#0a0a0a",
   padding: "15px",
-  borderRadius: "5px",
   zIndex: 1000,
-  maxWidth: "100vw",
+  width: "96vw",
 };
 
 const buttonStyle = {
-  backgroundColor: "#6a83b0",
+  backgroundColor: '#e92a2f',
   color: "white",
   border: "none",
   padding: "8px 12px",
   cursor: "pointer",
-  borderRadius: "3px",
+  borderRadius: "0px",
 };
 
 export default CookieConsent;

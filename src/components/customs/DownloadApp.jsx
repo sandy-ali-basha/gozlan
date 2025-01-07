@@ -15,7 +15,7 @@ const DownloadApp = () => {
     >
       {/* Google Play Button */}
       <Button
-        variant="contained"
+         variant="outlined"
         startIcon={<AndroidIcon />}
         href="https://play.google.com/store/apps"
         target="_blank"
@@ -33,7 +33,7 @@ const DownloadApp = () => {
 
       {/* App Store Button */}
       <Button
-        variant="contained"
+         variant="outlined"
         startIcon={<AppleIcon />}
         href="https://www.apple.com/app-store/"
         target="_blank"

@@ -242,7 +242,7 @@ const ChangePasswordCard = () => {
               )}
             </Box>
             <Grid item xs={12}>
-              <Button variant="contained" type="submit" sx={{ mr: 4 }}>
+              <Button  variant="outlined" type="submit" sx={{ mr: 4 }}>
                 Save Changes
               </Button>
               <Button

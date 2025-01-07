@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useTranslation } from "react-i18next";
-import img from "../../../assets/images/hero-image (3).jpg";
+import img from "../../../assets/images/slide (2).jpg";
 import { _AuthApi } from "api/auth";
 import { Alert, Box, Button, Grid, TextField, Typography } from "@mui/material";
 import LanguageSelector from "components/LanguageSelector";
@@ -89,9 +89,7 @@ const ResetPassword = () => {
             alignItems: "stretch",
             flexDirection: "column",
             textAlign: "center",
-            boxShadow: 5,
             p: 2,
-            borderRadius: 2,
             background: "white",
             minHeight: "50vh",
           }}
@@ -162,7 +160,7 @@ const ResetPassword = () => {
               loading={false}
               fullWidth
               type="submit"
-              variant="contained"
+               variant="outlined"
             >
               {t("Update Password")}
             </Button>

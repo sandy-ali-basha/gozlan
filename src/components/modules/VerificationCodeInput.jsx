@@ -79,7 +79,7 @@ const VerificationCodeInput = () => {
         </Typography>
         <Button
           type="submit"
-          variant="contained"
+           variant="outlined"
           color="primary"
           sx={{ mt: 3 }}
         >

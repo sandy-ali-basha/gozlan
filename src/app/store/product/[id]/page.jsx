@@ -48,15 +48,14 @@ function Product() {
             {data?.data?.images ? (
               data?.data?.images?.map((item, idx) => (
                 <SwiperSlide key={idx}>
-                  <Box sx={{ width: "100%", height: "80vh", borderRadius: 3 }}>
+                  <Box sx={{ width: "100%", height: "80vh"}}>
                     <img
                       src={item?.image_path}
                       alt={`Slide`}
                       style={{
                         objectFit: "contain",
                         width: "100%",
-                        height: "100%",
-                        borderRadius: "inherit",
+                        height: "100%"
                       }}
                       quality={100}
                     />
@@ -65,14 +64,13 @@ function Product() {
               ))
             ) : (
               <SwiperSlide>
-                <Box sx={{ width: "100%", height: "100%", borderRadius: 3 }}>
+                <Box sx={{ width: "100%", height: "100%" }}>
                   <img
                     src={defualt}
                     style={{
                       objectFit: "cover",
                       width: "100%",
-                      height: "100%",
-                      borderRadius: "inherit",
+                      height: "100%"
                     }}
                     quality={100}
                     alt=""
@@ -174,7 +172,6 @@ function Product() {
                   style={{
                     width: "100px",
                     height: "15px",
-                    borderRadius: "50px",
                   }}
                 />
               ) : (
@@ -194,7 +191,6 @@ function Product() {
                   style={{
                     width: "100px",
                     height: "15px",
-                    borderRadius: "50px",
                   }}
                 />
               ) : (
@@ -271,8 +267,7 @@ function Product() {
                   <SwiperSlide key={idx}>
                     <Box
                       sx={{
-                        width: "100%",
-                        borderRadius: 3,
+                        width: "100%"
                       }}
                     >
                       <img
@@ -280,7 +275,6 @@ function Product() {
                         alt={`Slide `}
                         style={{
                           objectFit: "cover",
-                          borderRadius: "inherit",
                           width: "100%",
                         }}
                         quality={100}
@@ -294,8 +288,8 @@ function Product() {
             <Box display="flex" alignItems="center" justifyContent="center">
               <Button
                 size="large"
-                sx={{ width: "90%", p: 1, mt: 2, borderRadius: 3 }}
-                variant="contained"
+                sx={{ width: "90%", p: 1, mt: 2}}
+                variant="outlined"
                 color="secondary"
                 onClick={() => handleAddToCart(data?.data?.id)}
                 disabled={isLoading}
@@ -327,7 +321,6 @@ function Product() {
                   sx={{
                     width: "100%",
                     height: { md: "80vh" },
-                    borderRadius: 3,
                   }}
                 >
                   <img
@@ -335,7 +328,6 @@ function Product() {
                     alt={`Slide `}
                     style={{
                       objectFit: "cover",
-                      borderRadius: "inherit",
                       width: "100%",
                     }}
                     quality={100}

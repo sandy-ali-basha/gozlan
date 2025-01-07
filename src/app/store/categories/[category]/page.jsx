@@ -15,7 +15,6 @@ import ProductCard from "components/modules/ProductCard";
 import MenuIcon from "@mui/icons-material/Menu";
 import SideDrawer from "./_components/Drawer";
 import { CloseRounded } from "@mui/icons-material";
-import OfferSection from "app/home/OfferSection";
 import bannerImg from "assets/images/banner-08.jpg";
 import BannerSection from "../_components/Banner";
 export default function Category() {
@@ -185,6 +184,7 @@ export default function Category() {
                       loading={false}
                       purchasable={item?.purchasable === "always"}
                       offer={item?.compare_price}
+                      category={"Gold"}
                     />
                   </Grid>
                 );
@@ -203,6 +203,7 @@ export default function Category() {
                       loading={false}
                       purchasable={item?.purchasable === "always"}
                       offer={item?.compare_price}
+                      category={"Gold"}
                     />
                   </Grid>
                 );

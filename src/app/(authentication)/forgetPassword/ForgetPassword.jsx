@@ -1,11 +1,10 @@
 import { Box, Typography, Button, TextField, Alert } from "@mui/material";
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { _AuthApi } from "api/auth";
-import img from "../../../assets/images/hero-image (3).jpg";
+import img from "../../../assets/images/slide (2).jpg";
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "components/LanguageSelector";
 
@@ -86,7 +85,6 @@ const ForgetPassword = () => {
             textAlign: "center",
             boxShadow: 5,
             p: 2,
-            borderRadius: 2,
             background: "white",
             minHeight: "50vh",
           }}
@@ -111,7 +109,7 @@ const ForgetPassword = () => {
               label={t("Email")}
             />
             {errors.email && (
-              <Alert severity="error">{errors.email.message}</Alert>
+              <Alert severity="error">{errors?.errors?.email.message}</Alert>
             )}
             {error && (
               <Alert severity="error" sx={{ mt: 2 }}>
@@ -129,7 +127,7 @@ const ForgetPassword = () => {
               disabled={timer > 0}
               fullWidth
               type="submit"
-              variant="contained"
+              variant="outlined"
               sx={{ mt: 2 }}
             >
               {timer > 0 ? `${t("Send Again in")} ${timer}s` : t("Send Reset Email")}

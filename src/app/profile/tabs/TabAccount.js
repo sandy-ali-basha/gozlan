@@ -201,7 +201,7 @@ const TabAccount = () => {
                   )}
                 </Box>
                 <Grid item xs={12} sx={{ pt: 4 }}>
-                  <Button type="submit" variant="contained" sx={{ mr: 4 }}>
+                  <Button type="submit"  variant="outlined" sx={{ mr: 4 }}>
                     {t("Save Changes")}
                   </Button>
                 </Grid>

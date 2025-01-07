@@ -112,7 +112,7 @@ export default function Home() {
         modules={[Autoplay]}
       >
         <SwiperSlide>
-          <Link to={"/"}>
+          <Link to={"/store"}>
             <Box
               sx={{
                 position: "relative",
@@ -134,7 +134,7 @@ export default function Home() {
                 sx={{
                   position: "relative",
                   zIndex: 1,
-                  background: "#ffffff39",
+                  // background: "#ffffff39",
                   px: 4,
                   display: "flex",
                   flexDirection: "column",
@@ -148,7 +148,7 @@ export default function Home() {
               >
                 <Typography
                   variant="h4"
-                  color="text.primary"
+                  color="white"
                   sx={{ width: { xs: "100%", md: "70%" } }}
                 >
                   Discover the timeless beauty of Gozlan Jewelry—where artistry
@@ -156,7 +156,7 @@ export default function Home() {
                 </Typography>
                 <Typography
                   variant="p"
-                  color="text.primary"
+                  color="white"
                   sx={{ width: { xs: "100%", md: "70%" } }}
                 >
                   Explore our exclusive collection, crafted to celebrate your
@@ -164,15 +164,15 @@ export default function Home() {
                   brilliance.
                 </Typography>
                 <br />
-                <Link sx={{ mt: 4 }} href={"/"}>
+                <Button variant="text"  sx={{ mt: 4,color:'white' }} href={"/store"} >
                   {t("Shop collection")}
-                </Link>
+                </Button>
               </Box>
             </Box>
           </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <Link to={"/"}>
+          <Link to={"/store"}>
             <Box
               sx={{
                 position: "relative",
@@ -194,13 +194,13 @@ export default function Home() {
                 sx={{
                   position: "relative",
                   zIndex: 1,
-                  background: "#ffffff39",
+                  // background: "#ffffff39",
                   px: 4,
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
                   alignItems: "center",
-                  color: "black",
+                  color: "white",
                   textAlign: "center",
                   width: "100%",
                   height: "100%",
@@ -208,7 +208,7 @@ export default function Home() {
               >
                 <Typography
                   variant="h4"
-                  color="text.primary"
+                  color="white"
                   sx={{ width: { xs: "100%", md: "70%" } }}
                 >
                   Discover the timeless beauty of Gozlan Jewelry—where artistry
@@ -216,7 +216,7 @@ export default function Home() {
                 </Typography>
                 <Typography
                   variant="p"
-                  color="text.primary"
+                  color="white"
                   sx={{ width: { xs: "100%", md: "70%" } }}
                 >
                   Explore our exclusive collection, crafted to celebrate your
@@ -224,9 +224,9 @@ export default function Home() {
                   brilliance.
                 </Typography>
                 <br />
-                <Link sx={{ mt: 4 }} href={"/"}>
+                <Button variant="text" sx={{ mt: 4 ,color:"white"}} href={"/store"}>
                   {t("Shop collection")}
-                </Link>
+                </Button>
               </Box>
             </Box>
           </Link>
