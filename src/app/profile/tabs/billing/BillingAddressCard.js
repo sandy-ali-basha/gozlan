@@ -71,7 +71,6 @@ const BillingAddressCard = () => {
                     borderColor: item?.billing_default
                       ? "info.main"
                       : "text.secondary",
-                    borderRadius: 3,
                     p: 2,
                     m: 1,
                     backgroundColor: item?.billing_default

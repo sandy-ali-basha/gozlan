@@ -22,7 +22,7 @@ const CustomRadioIcons = props => {
             height: '100%',
             display: 'flex',
             boxShadow:3,
-            borderRadius: 3,
+            borderRadius: 0,
             cursor: 'pointer',
             position: 'relative',
             alignItems: 'center',

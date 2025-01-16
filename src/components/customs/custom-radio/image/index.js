@@ -16,7 +16,7 @@ const CustomRadioImg = props => {
           sx={{
             height: '100%',
             display: 'flex',
-            borderRadius: 3,
+            borderRadius: 0,
             cursor: 'pointer',
             overflow: 'hidden',
             position: 'relative',

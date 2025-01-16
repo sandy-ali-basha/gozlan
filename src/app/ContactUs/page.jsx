@@ -286,7 +286,7 @@ export default function ContactUs() {
               referrerpolicy="no-referrer-when-downgrade"
               style={{
                 border: "0",
-                borderRadius: "10px",
+                borderRadius: "0px",
                 width: "100%",
                 height: "70vh",
               }}

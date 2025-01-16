@@ -89,14 +89,16 @@ export default function ProductCard({
         )}
       </Link>
       <CardContent>
-        <Typography variant="body2" sx={{fontWeight:'bold',color: "text.secondary", }}>
+        <Typography
+          variant="body2"
+          sx={{ fontWeight: "bold", color: "text.secondary" }}
+        >
           {loading ? (
             <CardShimmer
               style={{
                 width: "100%",
                 height: "20px",
-                borderRadius: "12px",
-                
+                borderRadius: "0px",
               }}
             />
           ) : (
@@ -109,11 +111,11 @@ export default function ProductCard({
               style={{
                 width: "100%",
                 height: "20px",
-                borderRadius: "12px",
+                borderRadius: "0px",
               }}
             />
           ) : (
-            productName
+            productName?.split(" ").slice(0, 7).join(" ") + ' ...'
           )}
         </Typography>
         <Box
@@ -148,7 +150,7 @@ export default function ProductCard({
                   sx={{
                     width: "100%",
                     height: "20px",
-                    borderRadius: "12px",
+                    borderRadius: "0px",
                     backgroundColor: "#e0e0e0",
                   }}
                 />

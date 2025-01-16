@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 // Styled Box component
 const StyledBox1 = styled(Box)(({ theme }) => ({
   display: "flex",
-  borderRadius: "5px",
+  borderRadius: "0px",
   alignItems: "center",
   flexDirection: "column",
   padding: theme.spacing(6),
@@ -26,7 +26,7 @@ const StyledBox1 = styled(Box)(({ theme }) => ({
 // Styled Box component
 const StyledBox2 = styled(Box)(({ theme }) => ({
   display: "flex",
-  borderRadius: "5px",
+  borderRadius: "0px",
   alignItems: "center",
   flexDirection: "column",
   padding: theme.spacing(6),

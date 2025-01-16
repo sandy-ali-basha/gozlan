@@ -34,6 +34,7 @@ function NavBar() {
       position="relative"
       background="transparent"
       sx={{
+        
         zIndex: "99",
         width: "100%",
         background: "transparent",
@@ -49,6 +50,7 @@ function NavBar() {
           minHeight: "50px",
           gap: 3,
           justifyContent: "center",
+          display:{md:'initial',xs:'none'},
         }}
         disableGutters
       >
@@ -90,6 +92,7 @@ function NavBar() {
       </Toolbar>
       <Toolbar
         sx={{
+          display:{md:'flex',xs:'none'}, 
           background: "#212529",
           color: "text.white",
           minHeight: "50px",
@@ -105,7 +108,7 @@ function NavBar() {
             href="/"
             sx={{ color: "text.white", fontSize: "11px", letterSpacing: "-0.10px" }}
           >
-            About Us
+            My Orders
           </Typography>
           <Typography
             variant="div"
@@ -113,7 +116,7 @@ function NavBar() {
             href="/"
             sx={{ color: "text.white", fontSize: "11px", letterSpacing: "-0.10px" }}
           >
-            My Account
+            Account
           </Typography>
           <Typography
             variant="div"
@@ -207,7 +210,7 @@ function NavBar() {
             }}
           >
             <img alt="logo" style={{ width: "10vw" }} src={logo} />
-           </Typography>
+          </Typography>
           <Box
             sx={{
               flexGrow: 1,

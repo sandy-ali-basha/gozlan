@@ -19,7 +19,7 @@ const BlogCard = ({ id, image, title, text, date }) => {
     <Box
       sx={{
         gap: 2,
-        borderRadius: 2,
+        borderRadius: 0,
         my: 5,
         p: 2,
         py: 5,
@@ -31,7 +31,7 @@ const BlogCard = ({ id, image, title, text, date }) => {
         src={image}
         style={{
           width: "50%",
-          borderRadius: 4,
+          borderRadius: 0,
           height: "100%",
         }}
         alt={title}

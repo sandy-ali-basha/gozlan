@@ -30,7 +30,7 @@ const Shimmer = () => (
       height: "80vh",
       backgroundColor: "#f0f0f0",
       animation: "shimmer 1.5s infinite linear",
-      borderRadius: 10,
+      borderRadius: 0,
     }}
   />
 );
@@ -118,7 +118,7 @@ export default function Reels({ data }) {
               width: "100%",
               height: "auto",
               objectFit: "cover",
-              borderRadius: 10,
+              borderRadius: 0,
             }}
             onLoadedData={() => {
               console.log(`Video ${idx} loaded`); // Debug log

@@ -165,14 +165,13 @@ const StepCart = ({ handleNext }) => {
                           key={item?.product_id}
                           sx={{
                             display: "flex",
-                            borderRadius: 3,
                             width: "15%",
                           }}
                         >
                           <img
                             style={{
                               width: "100%",
-                              height: "100%",
+                              aspectRatio: 1,
                               objectFit: "cover",
                               borderRadius: "inherit",
                             }}
@@ -188,7 +187,7 @@ const StepCart = ({ handleNext }) => {
                         >
                           <Icon icon="tabler:x" fontSize={20} />
                         </IconButton>
-                        <Grid container sx={{ mx: 1 }}>
+                        <Grid container sx={{ mx: 2 }}>
                           <Grid item xs={12} md={8}>
                             <Link
                               to={`/store/product/${item?.id}/${item.name}`}
@@ -197,24 +196,38 @@ const StepCart = ({ handleNext }) => {
                               <ListItemText primary={item?.name} />
                             </Link>
                             <Box sx={{ display: "flex", alignItems: "center" }}>
-                              <Typography
-                                sx={{ mr: 1, color: "text.disabled" }}
-                              >
-                                {t("Sold By")}:
-                              </Typography>
-                              <Typography
-                                component={Link}
-                                to={`/store/categories/brand/${item?.brand?.id}`}
-                                sx={{
-                                  mr: 2,
-                                  color: "primary.main",
-                                  textDecoration: "none",
-                                }}
-                              >
-                                {item?.brand?.name}
-                              </Typography>
+                              {item?.compare_price > 0 && (
+                                <Typography
+                                  variant="body1"
+                                  sx={{
+                                    textDecoration: item?.compare_price
+                                      ? "line-through"
+                                      : "none",
+                                    fontSize: item?.compare_price
+                                      ? "small"
+                                      : "inherit",
+                                  }}
+                                  color={
+                                    item?.compare_price
+                                      ? "text.secondary"
+                                      : "initial"
+                                  }
+                                >
+                                  {item?.compare_price} {t("currency")}
+                                </Typography>
+                              )}
+
+                              {item?.price > 0 && (
+                                <Typography
+                                  variant="body1"
+                                  color="initial"
+                                  sx={{ mx: 2 }}
+                                >
+                                  {item?.price.toLocaleString()} {t("currency")}
+                                </Typography>
+                              )}
                               <Chip
-                                sx={{borderRadius:0}}
+                                sx={{ borderRadius: 0 }}
                                 size="small"
                                 skin="light"
                                 variant="outlined"
@@ -229,36 +242,6 @@ const StepCart = ({ handleNext }) => {
                                     : t("Out Of Stock")
                                 }
                               />
-                            </Box>
-                            <Box sx={{ display: "flex" }}>
-                              <Box>
-                                {item?.compare_price > 0 && (
-                                  <Typography
-                                    variant="body1"
-                                    sx={{
-                                      textDecoration: item?.compare_price
-                                        ? "line-through"
-                                        : "none",
-                                      fontSize: item?.compare_price
-                                        ? "small"
-                                        : "inherit",
-                                    }}
-                                    color={
-                                      item?.compare_price
-                                        ? "text.secondary"
-                                        : "initial"
-                                    }
-                                  >
-                                    item?.compare_price {t("currency")}
-                                  </Typography>
-                                )}
-                                {item?.price > 0 && (
-                                  <Typography variant="body1" color="initial">
-                                    {item?.price.toLocaleString()}{" "}
-                                    {t("currency")}
-                                  </Typography>
-                                )}
-                              </Box>
                             </Box>
                           </Grid>
                           <Grid item xs={12} md={4} sx={{ mt: [4, 4, 6] }}>
@@ -364,7 +347,7 @@ const StepCart = ({ handleNext }) => {
               {userData && (
                 <CardContent>
                   <ApplyCoupon />
-                  <ApplyPoints />
+                  {/* <ApplyPoints /> */}
                 </CardContent>
               )}
 

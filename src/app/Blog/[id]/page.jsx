@@ -30,13 +30,13 @@ export default function BlogPost() {
 
         {isLoading ? (
           <CardShimmer
-            style={{ width: "80vw", borderRadius: "10px", height: "70vh" }}
+            style={{ width: "80vw", borderRadius: "0px", height: "70vh" }}
           />
         ) : (
           <img
             style={{
               width: "80vw",
-              borderRadius: "10px",
+              borderRadius: "0px",
               height: "70vh",
               objectFit: "cover",
             }}

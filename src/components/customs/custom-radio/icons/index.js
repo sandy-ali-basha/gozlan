@@ -30,7 +30,7 @@ const CustomRadioIcons = (props) => {
             p: 4,
             height: "100%",
             display: "flex",
-            borderRadius: 3,
+            borderRadius: 0,
             cursor: "pointer",
             position: "relative",
             alignItems: "center",

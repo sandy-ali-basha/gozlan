@@ -117,7 +117,7 @@ const StepAddress = ({
   return (
     <Container>
       <Grid container spacing={4}>
-        <Grid item xs={12} lg={8}>
+        <Grid item xs={12} lg={7}>
           <Typography sx={{ mb: 4 }} variant="h6">
             {t("Select your preferable address")}
           </Typography>
@@ -137,7 +137,7 @@ const StepAddress = ({
             {t("Add new address")}
           </Button>
         </Grid>
-        <Grid item xs={12} lg={4}>
+        <Grid item xs={12} lg={5}>
           <Card sx={{ mb: 4 }}>
             <CardContent>
               <List>
@@ -166,13 +166,13 @@ const StepAddress = ({
                           key={item?.id}
                           sx={{
                             display: "flex",
-                            width: "20%",
+                            width: "25%",
                           }}
                         >
                           <img
                             style={{
                               width: "100%",
-                              height: "100%",
+                              aspectRatio:1,
                               objectFit: "cover",
                             }}
                             src={item?.images[0]?.image_path}
@@ -180,7 +180,7 @@ const StepAddress = ({
                           />
                         </ListItemAvatar>
                         <Grid container sx={{ mx: 1 }}>
-                          <Grid item xs={12} md={8}>
+                          <Grid item xs={12}>
                             <Link
                               to={`/store/product/${item?.id}/${item.name}`}
                               style={{ textDecoration: "none" }}
@@ -271,7 +271,7 @@ const StepAddress = ({
                   </Box>
                 )}
                 {/* points_used */}
-                {cartData?.data?.points_used > 0 && (
+                {/* {cartData?.data?.points_used > 0 && (
                   <Box
                     sx={{
                       my: 2,
@@ -288,7 +288,7 @@ const StepAddress = ({
                       {t("currency")}
                     </Typography>
                   </Box>
-                )}
+                )} */}
               </Box>
             </CardContent>
           </Card>

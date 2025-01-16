@@ -16,7 +16,7 @@ export default function CategoryCard({ label, link, loading }) {
         sx={{
           width: "-webkit-fill-available",
           boxShadow: 3,
-          borderRadius: 3,
+          borderRadius: 0,
           borderLeft: "2px solid",
           borderColor: "primary.light",
           height: "10vh",
@@ -32,7 +32,7 @@ export default function CategoryCard({ label, link, loading }) {
                 style={{
                   width: "15vw",
                   height: "50px",
-                  borderRadius: 2,
+                  borderRadius: 0,
                 }}
               />
             </>

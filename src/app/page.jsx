@@ -116,7 +116,7 @@ export default function Home() {
             <Box
               sx={{
                 position: "relative",
-                aspectRatio: "16/9",
+                aspectRatio: { md: "16/9", xs: "9/16" },
               }}
             >
               <img
@@ -134,7 +134,6 @@ export default function Home() {
                 sx={{
                   position: "relative",
                   zIndex: 1,
-                  // background: "#ffffff39",
                   px: 4,
                   display: "flex",
                   flexDirection: "column",
@@ -149,7 +148,7 @@ export default function Home() {
                 <Typography
                   variant="h4"
                   color="white"
-                  sx={{ width: { xs: "100%", md: "70%" } }}
+                  sx={{ width: { xs: "90%", md: "70%" } }}
                 >
                   Discover the timeless beauty of Gozlan Jewelry—where artistry
                   meets sophistication.
@@ -157,14 +156,18 @@ export default function Home() {
                 <Typography
                   variant="p"
                   color="white"
-                  sx={{ width: { xs: "100%", md: "70%" } }}
+                  sx={{ width: { xs: "90%", md: "70%" } }}
                 >
                   Explore our exclusive collection, crafted to celebrate your
                   unique style and elevate every moment with unparalleled
                   brilliance.
                 </Typography>
                 <br />
-                <Button variant="text"  sx={{ mt: 4,color:'white' }} href={"/store"} >
+                <Button
+                  variant="text"
+                  sx={{ mt: 4, color: "white" }}
+                  href={"/store"}
+                >
                   {t("Shop collection")}
                 </Button>
               </Box>
@@ -176,7 +179,7 @@ export default function Home() {
             <Box
               sx={{
                 position: "relative",
-                aspectRatio: "16/9",
+                aspectRatio: { md: "16/9", xs: "9/16" },
               }}
             >
               <img
@@ -209,7 +212,7 @@ export default function Home() {
                 <Typography
                   variant="h4"
                   color="white"
-                  sx={{ width: { xs: "100%", md: "70%" } }}
+                  sx={{ width: { xs: "90%", md: "70%" } }}
                 >
                   Discover the timeless beauty of Gozlan Jewelry—where artistry
                   meets sophistication.
@@ -217,14 +220,18 @@ export default function Home() {
                 <Typography
                   variant="p"
                   color="white"
-                  sx={{ width: { xs: "100%", md: "70%" } }}
+                  sx={{ width: { xs: "90%", md: "70%" } }}
                 >
                   Explore our exclusive collection, crafted to celebrate your
                   unique style and elevate every moment with unparalleled
                   brilliance.
                 </Typography>
                 <br />
-                <Button variant="text" sx={{ mt: 4 ,color:"white"}} href={"/store"}>
+                <Button
+                  variant="text"
+                  sx={{ mt: 4, color: "white" }}
+                  href={"/store"}
+                >
                   {t("Shop collection")}
                 </Button>
               </Box>

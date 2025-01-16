@@ -203,7 +203,7 @@ export default function Category() {
                       loading={false}
                       purchasable={item?.purchasable === "always"}
                       offer={item?.compare_price}
-                      category={"Gold"}
+                      category={item?.attributes[0]?.value}
                     />
                   </Grid>
                 );

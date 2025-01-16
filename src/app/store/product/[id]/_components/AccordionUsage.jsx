@@ -16,7 +16,7 @@ export default function AccordionUsage({ data, isLoading }) {
         data?.data?.accordions.map((item, idx) => (
           <Accordion
             sx={{
-              borderRadius: 3,
+              borderRadius: 0,
               my: 1,
               border: 0,
               "&::before": {

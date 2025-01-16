@@ -19,7 +19,7 @@ export const useNavBar = () => {
       label: t("Change Password"),
       onClick: () => navigate("/profile/security"),
     },
-    // { id: 4, label: t("Billing"), onClick: () => navigate("/profile/billing") },
+    { id: 4, label: t("Billing"), onClick: () => navigate("/profile/billing") },
     {
       id: 6,
       label: t("My Orders"),
@@ -74,11 +74,7 @@ export const useNavBar = () => {
       label: t("Products"),
     },
     { id: "2", onClick: () => navigate("/about"), label: t("About Us") },
-     {
-      id: "4",
-      onClick: () => navigate("/store/offers"),
-      label: t("Special Offers"),
-    },
+
     { id: "5", onClick: () => navigate("/contact-us"), label: t("Contact Us") },
   ];
 

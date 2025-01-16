@@ -91,7 +91,7 @@ const TabAccount = () => {
       type: "text",
       InputProps: {
         startAdornment: (
-          <InputAdornment position="start">IQ (+964)</InputAdornment>
+          <InputAdornment position="start">TR (+90)</InputAdornment>
         ),
       },
       placeholder: t("Phone Number"),

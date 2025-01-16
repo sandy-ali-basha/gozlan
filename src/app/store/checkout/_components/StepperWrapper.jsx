@@ -55,7 +55,7 @@ const StepperWrapper = styled(Box)(({ theme }) => {
     "& .MuiStepConnector-root": {
       "& .MuiStepConnector-line": {
         borderWidth: 3,
-        borderRadius: 3,
+        borderRadius: 0,
       },
       "&.Mui-active, &.Mui-completed": {
         "& .MuiStepConnector-line": {

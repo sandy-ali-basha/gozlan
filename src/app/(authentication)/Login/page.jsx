@@ -39,17 +39,17 @@ export default function Login() {
         <Box
           sx={{
             display: "flex",
-            justifyContent: "flex-start",
+            justifyContent: "center",
             alignItems: "stretch",
             flexDirection: "column",
             px: 2,
-            py: 10,background:'#faf9f5'
+            height:'100%'
           }}
           component="form"
           onSubmit={handleSubmit(onSubmit)}
         >
           <img
-            style={{ margin: "auto", width: "30%", marginBottom: "3vh" }}
+            style={{  width: "30%", marginBottom: "3vh" }}
             src={logo}
             alt="logo"
           />
