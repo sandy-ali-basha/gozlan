@@ -852,3 +852,11 @@ h5.widget-title {
     min-height: 50px !important;
   }
 }
+.swiper-button-prev,
+.swiper-button-next {
+  color: #000000 !important;
+  
+  &:hover {
+    color: #5c5c5c;
+  }
+}

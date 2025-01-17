@@ -10,7 +10,11 @@ import image5 from "assets/images/image (5).jpg";
 const Page = () => {
   return (
     <Box sx={{ px: 4 }}>
-      <img src={image1} style={{height:'50vh',width:'100%',objectFit:'cover'}} alt="" />
+      <img
+        src={image1}
+        style={{ height: "50vh", width: "100%", objectFit: "cover" }}
+        alt=""
+      />
       {/* Hero Section */}
       <Box
         sx={{
@@ -32,35 +36,31 @@ const Page = () => {
       {/* Content Section */}
       <Box sx={{ my: 4 }}>
         <Typography variant="subtitle1" gutterBottom>
-          ABOUT US FOR DJEWNO
+          ABOUT US FOR GOZLAN
         </Typography>
         <Typography variant="h4" gutterBottom>
-          Pellentesque habitant morbi tristique senectus et netus et malesuada
-          fames ac egestas.
+          Exquisite Quality, Timeless Craftsmanship
         </Typography>
         <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
             <Typography variant="body1">
-              In hac habitasse platea dictumst. Pellentesque viverra sem nec
-              orci lacinia, in bibendum urna mollis. Quisque nunc lacus, varius
-              vel leo a, pretium lobortis metus. Vivamus consectetur consequat
-              justo. Sed interdum nunc ut tristique congue.
+              At Gozlan Jewelry, our name stands for unmatched quality and
+              masterful craftsmanship. Since 1989, we’ve been crafting luxury
+              jewelry that elevates elegance and transcends boundaries.
             </Typography>
           </Grid>
           <Grid item xs={12} md={4}>
             <Typography variant="body1">
-              Quisque elementum tortor risus. Suspendisse nibh nisl, dignissim
-              pellentesque mi eget, porta rhoncus quam. Curabitur gravida nibh
-              sed purus efficitur, at pretium neque vulputate. Duis euismod
-              aliquam tellus, in accumsan metus viverra finibus.
+              From the heart of Dubai to the charm of Moscow, the heritage of
+              Istanbul, the sophistication of London, and the legacy of Beirut,
+              Gozlan Jewelry connects you to the world’s finest luxury hubs
             </Typography>
           </Grid>
           <Grid item xs={12} md={4}>
             <Typography variant="body1">
-              In hac habitasse platea dictumst. Pellentesque viverra sem nec
-              orci lacinia, in bibendum urna mollis. Quisque nunc lacus, varius
-              vel leo a, pretium lobortis metus. Vivamus consectetur consequat
-              justo. Sed interdum nunc ut tristique congue.
+              Each Gozlan creation is a celebration of artistry and enduring
+              beauty. Discover the essence of luxury with us, where tradition
+              meets innovation in every piece.
             </Typography>
           </Grid>
         </Grid>

@@ -50,7 +50,7 @@ function NavBar() {
           minHeight: "50px",
           gap: 3,
           justifyContent: "center",
-          display:{md:'initial',xs:'none'},
+          display:{md:'flex',xs:'none'},
         }}
         disableGutters
       >

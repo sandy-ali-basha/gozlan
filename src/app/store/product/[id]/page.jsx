@@ -41,7 +41,7 @@ function Product() {
 
   const navigate = useNavigate();
   return (
-    <Container sx={{ mt: 15 }}>
+    <Container sx={{ mt: 5 }}>
       <Grid container>
         <Grid item xs={12} md={6}>
           <Swiper navigation={true} modules={[Navigation]} spaceBetween={10}>
@@ -148,7 +148,7 @@ function Product() {
           <hr />
           <Box sx={{ display: "flex", my: 1, px: 2, flexWrap: "wrap" }}>
             <Box>
-              {isLoading ? (
+              {/* {isLoading ? (
                 <CardShimmer />
               ) : (
                 data?.data?.brand && (
@@ -165,9 +165,9 @@ function Product() {
                     }}
                   />
                 )
-              )}
+              )} */}
 
-              {isLoading ? (
+              {/* {isLoading ? (
                 <CardShimmer
                   style={{
                     width: "100px",
@@ -184,7 +184,7 @@ function Product() {
                     variant="outlined"
                   />
                 )
-              )}
+              )} */}
 
               {isLoading ? (
                 <CardShimmer
@@ -208,7 +208,7 @@ function Product() {
               )}
             </Box>
           </Box>
-          {data?.data?.points > 0 && (
+          {/* {data?.data?.points > 0 && (
             <Typography
               variant="caption"
               color="text.secondary"
@@ -217,7 +217,7 @@ function Product() {
               <PaidRounded color="warning" /> {t("you earn")}{" "}
               {data?.data?.points} {t("points by purchasing this product")}
             </Typography>
-          )}
+          )} */}
 
           <Box sx={{ mx: 2 }}>
             {isLoading ? (
