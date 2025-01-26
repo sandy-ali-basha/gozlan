@@ -1,18 +1,21 @@
 import React from "react";
 import { Box, Grid, Typography, Button } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
-const OfferSection = ({banners}) => {
+const OfferSection = ({ banners }) => {
+    const { t } = useTranslation("index");
+  
   return (
     <Box sx={{ padding: "2rem" }}>
       <Grid container spacing={3}>
-        {banners.map((banner) => (
-          <Grid item xs={12} md={banner.id === 1 ? 7 : 5} key={banner.id}>
+        {banners.map((banner,index) => (
+          <Grid item xs={12} md={index === 0 ? 7 : 5} key={banner.id}>
             <Box
               sx={{
                 position: "relative",
                 overflow: "hidden",
                 height: "250px",
-                backgroundImage: `url(${banner?.backgroundImage})`,
+                backgroundImage: `url(${banner?.image})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 display: "flex",
@@ -28,12 +31,6 @@ const OfferSection = ({banners}) => {
             >
               <Box sx={{ maxWidth: "70%" }}>
                 <Typography
-                  variant="overline"
-                  sx={{ fontSize: "12px", fontWeight: "bold" }}
-                >
-                  {banner.saleText}
-                </Typography>
-                <Typography
                   variant="h5"
                   sx={{ fontWeight: "bold", marginTop: "0.5rem" }}
                 >
@@ -43,7 +40,7 @@ const OfferSection = ({banners}) => {
                   variant="body2"
                   sx={{ marginTop: "0.5rem", marginBottom: "1rem" }}
                 >
-                  {banner.subtitle}
+                  {banner.description}
                 </Typography>
                 <Button
                   variant="text"
@@ -55,7 +52,7 @@ const OfferSection = ({banners}) => {
                     fontSize: "14px",
                   }}
                 >
-                  {banner.buttonText}
+                  {t("Shop Now")}
                 </Button>
               </Box>
             </Box>

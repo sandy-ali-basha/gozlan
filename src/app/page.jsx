@@ -4,11 +4,8 @@ import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react"; // Correct import
 import { Autoplay } from "swiper/modules"; // Import Lazy module
 import sliderImg from "assets/images/slide (1).jpg";
-import sliderImg2 from "assets/images/products/IMG_0707 copy.jpg";
 import Banner from "./home/Banner";
 import ProductCard from "components/modules/ProductCard";
-import image2 from "assets/images/products/earrings.jpg";
-import image3 from "assets/images/products/banner.jpg";
 import productImg4 from "assets/images/products/product (1).jpg";
 import productImg3 from "assets/images/products/product (2).jpg";
 import productImg2 from "assets/images/products/product (3).jpg";
@@ -16,8 +13,8 @@ import productImg1 from "assets/images/products/product (4).jpg";
 import productImg0 from "assets/images/products/product (6).jpg";
 import Categories from "./home/Categories";
 import OfferSection from "./home/OfferSection";
-import banner2 from "assets/images/products/banner5.jpg";
-import banner1 from "assets/images/products/earrings.jpg";
+import { useHome } from "hooks/home/useHome";
+import TwoSections from "./home/TowSections";
 
 export default function Home() {
   const { t } = useTranslation("index");
@@ -83,24 +80,9 @@ export default function Home() {
       discount: "8%",
     },
   ];
-  const banners = [
-    {
-      id: 1,
-      title: "Diamonds are forever—and so are you",
-      subtitle: "Embrace the Unseen Magic of Uniqueness...",
-      buttonText: "SHOP COLLECTION",
-      saleText: "CYBER MONDAY SALE",
-      backgroundImage: banner2,
-    },
-    {
-      id: 2,
-      title: "Crafted Beauty",
-      subtitle: "Beautiful pieces to pass down for generations...",
-      buttonText: "SHOP COLLECTION",
-      backgroundImage: banner1,
-      saleText: "CYBER MONDAY SALE",
-    },
-  ];
+
+  const { data, isLoading } = useHome();
+
   return (
     <Box sx={{ marginTop: "-100px" }}>
       <Swiper
@@ -111,226 +93,94 @@ export default function Home() {
         lazy={true}
         modules={[Autoplay]}
       >
-        <SwiperSlide>
-          <Link to={"/store"}>
-            <Box
-              sx={{
-                position: "relative",
-                aspectRatio: { md: "16/9", xs: "9/16" },
-              }}
-            >
-              <img
-                src={sliderImg}
-                alt={`Slide`}
-                style={{
-                  objectFit: "cover",
-                  width: "100%",
-                  height: "100%",
-                  position: "absolute",
-                }}
-                lazy
-              />
-              <Box
-                sx={{
-                  position: "relative",
-                  zIndex: 1,
-                  px: 4,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "black",
-                  textAlign: "center",
-                  width: "100%",
-                  height: "100%",
-                }}
-              >
-                <Typography
-                  variant="h4"
-                  color="white"
-                  sx={{ width: { xs: "90%", md: "70%" } }}
-                >
-                  Discover the timeless beauty of Gozlan Jewelry—where artistry
-                  meets sophistication.
-                </Typography>
-                <Typography
-                  variant="p"
-                  color="white"
-                  sx={{ width: { xs: "90%", md: "70%" } }}
-                >
-                  Explore our exclusive collection, crafted to celebrate your
-                  unique style and elevate every moment with unparalleled
-                  brilliance.
-                </Typography>
-                <br />
-                <Button
-                  variant="text"
-                  sx={{ mt: 4, color: "white" }}
-                  href={"/store"}
-                >
-                  {t("Shop collection")}
-                </Button>
-              </Box>
+        {data?.home_sections
+          ?.filter((section) => section.type === "slider") // Filter sections of type "banner"
+          .map((section, idx) => (
+            <Box key={section.id}>
+              {section.items.map((item) => (
+                <SwiperSlide key={item.id}>
+                  <Link to={item.cta_link}>
+                    <Box
+                      sx={{
+                        position: "relative",
+                        aspectRatio: { md: "16/9", xs: "9/16" },
+                      }}
+                    >
+                      <img
+                        src={sliderImg}
+                        alt={`Slide`}
+                        style={{
+                          objectFit: "cover",
+                          width: "100%",
+                          height: "100%",
+                          position: "absolute",
+                        }}
+                        lazy
+                      />
+                      <Box
+                        sx={{
+                          position: "relative",
+                          zIndex: 1,
+                          px: 4,
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          color: "black",
+                          textAlign: "center",
+                          width: "100%",
+                          height: "100%",
+                        }}
+                      >
+                        <Typography
+                          variant="h4"
+                          color="white"
+                          sx={{ width: { xs: "90%", md: "70%" } }}
+                        >
+                          {item.title}
+                        </Typography>
+                        <Typography
+                          variant="p"
+                          color="white"
+                          sx={{ width: { xs: "90%", md: "70%" } }}
+                        >
+                          {item.description}
+                        </Typography>
+                        <br />
+                        <Button
+                          variant="text"
+                          sx={{ mt: 4, color: "white" }}
+                          href={item.cta_link}
+                        >
+                          {t("Shop collection")}
+                        </Button>
+                      </Box>
+                    </Box>
+                  </Link>
+                </SwiperSlide>
+              ))}
             </Box>
-          </Link>
-        </SwiperSlide>
-        <SwiperSlide>
-          <Link to={"/store"}>
-            <Box
-              sx={{
-                position: "relative",
-                aspectRatio: { md: "16/9", xs: "9/16" },
-              }}
-            >
-              <img
-                src={sliderImg2}
-                alt={`Slide`}
-                style={{
-                  objectFit: "cover",
-                  width: "100%",
-                  height: "100%",
-                  position: "absolute",
-                }}
-                lazy
-              />
-              <Box
-                sx={{
-                  position: "relative",
-                  zIndex: 1,
-                  // background: "#ffffff39",
-                  px: 4,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "white",
-                  textAlign: "center",
-                  width: "100%",
-                  height: "100%",
-                }}
-              >
-                <Typography
-                  variant="h4"
-                  color="white"
-                  sx={{ width: { xs: "90%", md: "70%" } }}
-                >
-                  Discover the timeless beauty of Gozlan Jewelry—where artistry
-                  meets sophistication.
-                </Typography>
-                <Typography
-                  variant="p"
-                  color="white"
-                  sx={{ width: { xs: "90%", md: "70%" } }}
-                >
-                  Explore our exclusive collection, crafted to celebrate your
-                  unique style and elevate every moment with unparalleled
-                  brilliance.
-                </Typography>
-                <br />
-                <Button
-                  variant="text"
-                  sx={{ mt: 4, color: "white" }}
-                  href={"/store"}
-                >
-                  {t("Shop collection")}
-                </Button>
-              </Box>
-            </Box>
-          </Link>
-        </SwiperSlide>
+          ))}
       </Swiper>
-      <Banner />
-      <Divider></Divider>
-      <Categories />
-      <Divider></Divider>
-      <Grid container sx={{ p: 4 }} spacing={4}>
-        <Grid item md="6">
-          <Box
-            sx={{
-              position: "relative",
-              overflow: "hidden",
-              height: "80vh",
-              backgroundImage: `url(${image3})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              display: "flex",
-              alignItems: "flex-end",
-              padding: "1.5rem",
-              color: "white",
-              "&:hover": {
-                backgroundBlendMode: "lighten",
-                backgroundColor: "rgba(255, 255, 255, 0.3)",
-                transition: "all 0.3s ease",
-              },
-            }}
-          >
-            <Box sx={{ maxWidth: "70%" }}>
-              <Typography
-                variant="h5"
-                sx={{ fontWeight: "bold", marginTop: "0.5rem" }}
-              >
-                STYLE AND TREND JEWELRY OF MEN'S FASHION
-              </Typography>
+      {data?.home_sections
+        ?.filter((section) => section.type === "collections")
+        .map((section) => (
+          <Banner data={section?.items} />
+        ))}
 
-              <Button
-                variant="text"
-                sx={{
-                  color: "primary.main",
-                  textDecoration: "underline",
-                  fontWeight: "bold",
-                  padding: "0",
-                  fontSize: "14px",
-                }}
-              >
-                Discover
-              </Button>
-            </Box>
-          </Box>
-        </Grid>
-        <Grid item md="6">
-          <Box
-            sx={{
-              position: "relative",
-              overflow: "hidden",
-              height: "80vh",
-              backgroundImage: `url(${image2})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              display: "flex",
-              alignItems: "flex-end",
-              padding: "1.5rem",
-              color: "white",
-              "&:hover": {
-                backgroundBlendMode: "lighten",
-                backgroundColor: "rgba(255, 255, 255, 0.3)",
-                transition: "all 0.3s ease",
-              },
-            }}
-          >
-            <Box sx={{ maxWidth: "70%" }}>
-              <Typography
-                variant="h5"
-                sx={{ fontWeight: "bold", marginTop: "0.5rem" }}
-              >
-                STYLE AND TREND JEWELRY OF MEN'S FASHION
-              </Typography>
+      <Divider></Divider>
+      {data?.home_sections
+        ?.filter((section) => section.type === "categories")
+        .map((section) => (
+          <Categories data={section?.items} />
+        ))}
+      <Divider></Divider>
+      {data?.home_sections
+        ?.filter((section) => section.type === "TwoItems")
+        .map((section, idx) => (
+          <TwoSections data={section?.items} />
+        ))}
 
-              <Button
-                variant="text"
-                sx={{
-                  color: "primary.main",
-                  textDecoration: "underline",
-                  fontWeight: "bold",
-                  padding: "0",
-                  fontSize: "14px",
-                }}
-              >
-                Discover
-              </Button>
-            </Box>
-          </Box>
-        </Grid>
-      </Grid>
       <Divider></Divider>
       <Box sx={{ p: 4 }}>
         <Typography variant="h6" sx={{ pb: 2 }}>
@@ -354,7 +204,11 @@ export default function Home() {
         </Grid>
       </Box>
       <Divider></Divider>
-      <OfferSection banners={banners} />
+      {data?.home_sections
+        ?.filter((section) => section.type === "banner")
+        .map((section, idx) => (
+          <OfferSection banners={section?.items} />
+        ))}
     </Box>
   );
 }

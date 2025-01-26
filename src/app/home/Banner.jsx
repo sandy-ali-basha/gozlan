@@ -1,36 +1,17 @@
 import React from "react";
 import { Box, Container, Grid, Typography, Button } from "@mui/material";
-import banner1 from "assets/images/selection 1.jpg";
-import banner2 from "assets/images/selection 2.jpg";
-import banner3 from "assets/images/selection 3.jpg";
-const Banner = () => {
-  const collections = [
-    {
-      image: banner1,
-      title: "Modern Collection",
-      link: "about-us.html",
-    },
-    {
-      image: banner2,
-      title: "Classic Collection",
-      link: "about-us.html",
-    },
-    {
-      image: banner3,
-      title: "Timeless Collection",
-      link: "about-us.html",
-    },
-  ];
-
+import { useTranslation } from "react-i18next";
+const Banner = (data) => {
+  const {t} = useTranslation("index")
   return (
     <Box id="banner" sx={{ py: 4 }}>
       <Container maxWidth="xl">
         <Grid container spacing={4}>
-          {collections.map((collection, index) => (
+          {data?.data?.map((collection, index) => (
             <Grid item xs={12} md={4} key={index} sx={{ position: "relative" }}>
               <Box>
                 <img
-                  src={collection.image}
+                  src={collection?.image}
                   alt="img"
                   style={{
                     height: "60vh",
@@ -38,6 +19,7 @@ const Banner = () => {
                     display: "block",
                     objectFit: "cover",
                   }}
+                  loading="lazy"
                 />
               </Box>
               <Box
@@ -58,7 +40,7 @@ const Banner = () => {
                   {collection.title}
                 </Typography>
                 <Button
-                  href={collection.link}
+                  href={collection.cta_link}
                   variant="outlined"
                   sx={{
                     mt: 2,
@@ -66,7 +48,7 @@ const Banner = () => {
                     position: "relative",
                   }}
                 >
-                  Shop Now
+                  {t("Shop Now")}
                   <svg
                     className="arrow-right"
                     width="18"

@@ -17,6 +17,7 @@ import SideDrawer from "./_components/Drawer";
 import { CloseRounded } from "@mui/icons-material";
 import bannerImg from "assets/images/banner-08.jpg";
 import BannerSection from "../_components/Banner";
+
 export default function Category() {
   const {
     data,
@@ -42,6 +43,7 @@ export default function Category() {
     backgroundImage: bannerImg, // Replace with your image path
     saleText: "CYBER MONDAY SALE",
   };
+
   const SortFilter = () => {
     return (
       <FormControl
