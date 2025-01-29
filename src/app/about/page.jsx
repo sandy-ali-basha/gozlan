@@ -6,8 +6,10 @@ import image2 from "assets/images/image (2).jpg";
 import image3 from "assets/images/image (3).jpg";
 import image4 from "assets/images/image (4).jpg";
 import image5 from "assets/images/image (5).jpg";
+import { useTranslation } from "react-i18next";
 
 const Page = () => {
+  const { t } = useTranslation("index");
   return (
     <Box sx={{ px: 4 }}>
       <img
@@ -21,7 +23,7 @@ const Page = () => {
           backgroundImage: "url('/path-to-your-image.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          height: "300px",
+          my: { md: 6, xs: 1 },
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -29,84 +31,104 @@ const Page = () => {
         }}
       >
         <Typography variant="h3" align="center">
-          Pellentesque habitant morbi tristique senectus et netus
+          {t("Discover Timeless Elegance and Unmatched Craftsmanship")}
         </Typography>
       </Box>
 
       {/* Content Section */}
       <Box sx={{ my: 4 }}>
         <Typography variant="subtitle1" gutterBottom>
-          ABOUT US FOR GOZLAN
+          {t("ABOUT US")}
         </Typography>
         <Typography variant="h4" gutterBottom>
-          Exquisite Quality, Timeless Craftsmanship
+          {t("Exquisite Quality, Timeless Craftsmanship")}
         </Typography>
         <Grid container spacing={4}>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={4} sm={6}>
             <Typography variant="body1">
-              At Gozlan Jewelry, our name stands for unmatched quality and
-              masterful craftsmanship. Since 1989, we’ve been crafting luxury
-              jewelry that elevates elegance and transcends boundaries.
+              {
+                "At Gozlan Jewelry, our name stands for unmatched quality and masterful craftsmanship. Since 1989, we’ve been crafting luxury jewelry that elevates elegance and transcends boundaries."
+              }
             </Typography>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={4} sm={6}>
             <Typography variant="body1">
-              From the heart of Dubai to the charm of Moscow, the heritage of
-              Istanbul, the sophistication of London, and the legacy of Beirut,
-              Gozlan Jewelry connects you to the world’s finest luxury hubs
+              {t(
+                "From the heart of Dubai to the charm of Moscow, the heritage of Istanbul, the sophistication of London, and the legacy of Beirut, Gozlan Jewelry connects you to the world’s finest luxury hubs"
+              )}
             </Typography>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={4} sm={6}>
             <Typography variant="body1">
-              Each Gozlan creation is a celebration of artistry and enduring
-              beauty. Discover the essence of luxury with us, where tradition
-              meets innovation in every piece.
+              {t(
+                "Each Gozlan creation is a celebration of artistry and enduring beauty. Discover the essence of luxury with us, where tradition meets innovation in every piece."
+              )}
             </Typography>
           </Grid>
         </Grid>
       </Box>
       <Divider />
-      <Box sx={{ display: "flex", my: 4 }}>
-        <Typography variant="h4" sx={{ px: 4 }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { md: "row", xs: "column" },
+          my: 4,
+        }}
+      >
+        <Typography variant="h4" sx={{ px: 4, mb: 1 }}>
           01
         </Typography>
-        <Typography variant="h4">
-          Ullamcorper sit amet lorem sed, tempus eleifend lacus pellentesque.
+        <Typography variant="h4" sx={{ mb: 1 }}>
+          {t("GOZLAN JEWELRY: WHERE LUXURY MEETS ELEGANCE")}
         </Typography>
-        <Typography variant="caption">
-          Quisque elementum tortor risus. Suspendisse nibh nisl, dignissim
-          pellentesque mi eget, porta rhoncus quam. Curabitur gravida nibh sed
-          purus efficitur, at pretium neque vulputate.
+        <Typography variant="caption" sx={{ mb: 1 }}>
+          {t(
+            "At Gozlan Jewelry, every creation is a testament to unparalleled craftsmanship and timeless beauty. We blend tradition and innovation to craft pieces that resonate with sophistication and grace."
+          )}
         </Typography>
       </Box>
+      <Typography variant="h6">
+        {t("Distinctive Craftsmanship, Timeless Artistry")}
+      </Typography>
       <Typography variant="body1">
-        In hac habitasse platea dictumst. Pellentesque viverra sem nec orci
-        lacinia, in bibendum urna mollis. Quisque nunc lacus, varius vel leo a,
-        pretium lobortis metus. Vivamus consectetur consequat justo. Sed
-        interdum nunc ut tristique congue. Quisque maximus mauris et dui
-        sagittis scelerisque. Donec laoreet at turpis non molestie. Aenean dui
-        leo, rutrum ac nisl ac, accumsan feugiat eros. Curabitur tempor
-        vestibulum massa, vitae tincidunt justo congue at. Aliquam ullamcorper
-        sem elit, vestibulum cursus dui dictum vitae. Curabitur vestibulum
-        semper dolor, quis lacinia urna elementum vitae.
+        {t(
+          "Each design at Gozlan Jewelry tells a unique story. From the gleam of gold to the sparkle of precious stones, our collections are meticulously curated to celebrate life’s most cherished moments."
+        )}
+      </Typography>
+      <Typography variant="body1">
+        {t(
+          "In every detail, we strive for perfection—offering you not just jewelry, but a legacy of elegance. Let Gozlan Jewelry be your partner in capturing memories that last a lifetime."
+        )}
       </Typography>
       <Grid container spacing={4} sx={{ my: 4 }}>
         <Grid item md="3">
           <Typography variant="caption" sx={{ mb: 3 }}>
-            Du Kan Vara Drabbad
+            {t("Our Promise to You")}
           </Typography>
           <Typography variant="h6" sx={{ mb: 3 }}>
-            Kagt besk plötslig sportbarnsdöd fastoke ben reamatisk.
+            {t("Exceptional Quality")}
           </Typography>
           <Typography variant="body1" sx={{ mb: 3 }}>
-            Mara. Ambistat proskade tempofiering, reamatisk megaosmos. Memil
-            galna chips-sjukan till IVPA. Näringslots fronta varat i
-            kameratelefon liksom giganing.
+            {t(
+              "Every piece is crafted with precision and care, ensuring unmatched durability and brilliance."
+            )}
+          </Typography>
+
+          <Typography variant="h6" sx={{ mb: 3 }}>
+            {t("Global Expertise")}
           </Typography>
           <Typography variant="body1" sx={{ mb: 3 }}>
-            Mara. Ambistat proskade tempofiering, reamatisk megaosmos. Memil
-            galna chips-sjukan till IVPA. Näringslots fronta varat i
-            kameratelefon liksom giganing.
+            {t(
+              "Drawing inspiration from luxury hubs like Dubai, Istanbul, London, and Beirut, our designs embody universal charm and sophistication."
+            )}
+          </Typography>
+          <Typography variant="h6" sx={{ mb: 3 }}>
+            {t("Customer-Centric Service")}
+          </Typography>
+          <Typography variant="body1" sx={{ mb: 3 }}>
+            {t(
+              "Your satisfaction is our priority. We’re committed to providing a seamless experience, from selection to delivery."
+            )}
           </Typography>
         </Grid>
         <Grid item md="6">
@@ -119,10 +141,13 @@ const Page = () => {
           </Box>
         </Grid>
         <Grid item md="3">
+          <Typography variant="body2" sx={{ mb: 3 }}>
+            {t("Gozlan Jewelry: A Legacy of Luxury")}
+          </Typography>
           <Typography variant="caption" sx={{ mb: 3, color: "text.secondary" }}>
-            Mara. Ambistat proskade tempofiering, reamatisk megaosmos. Memil
-            galna chips-sjukan till IVPA. Näringslots fronta varat i
-            kameratelefon liksom giganing.
+            {t(
+              "Craftsmanship refined by decades of expertise. Every piece designed to tell your story. Where tradition meets modern elegance. Gozlan Jewelry: Your timeless companion."
+            )}
           </Typography>
           <img
             src={image3}
@@ -133,29 +158,29 @@ const Page = () => {
       </Grid>
       <Divider />
 
-      <Box sx={{ display: "flex", my: 4 }}>
-        <Typography variant="h4" sx={{ px: 4 }}>
+      <Box
+        sx={{
+          display: "flex",
+          my: 4,
+          flexDirection: { md: "row", xs: "column" },
+        }}
+      >
+        <Typography variant="h4" sx={{ px: 4, mb: 1 }}>
           02
         </Typography>
-        <Typography variant="h4">
-          Ullamcorper sit amet lorem sed, tempus eleifend lacus pellentesque.
+        <Typography variant="h4" sx={{ mb: 1 }}>
+          {t("GOZLAN JEWELRY: GOLD THAT INSPIRES, ELEGANCE THAT LASTS")}
         </Typography>
-        <Typography variant="caption">
-          Quisque elementum tortor risus. Suspendisse nibh nisl, dignissim
-          pellentesque mi eget, porta rhoncus quam. Curabitur gravida nibh sed
-          purus efficitur, at pretium neque vulputate.
+        <Typography variant="caption" sx={{ mb: 1 }}>
+          {t(
+            "Refined artistry shaped by timeless precision. A symbol of beauty, strength, and legacy. Crafted to shine in every moment of life. Gold at its finest, for those who seek perfection."
+          )}
         </Typography>
       </Box>
       <Typography variant="body1">
-        In hac habitasse platea dictumst. Pellentesque viverra sem nec orci
-        lacinia, in bibendum urna mollis. Quisque nunc lacus, varius vel leo a,
-        pretium lobortis metus. Vivamus consectetur consequat justo. Sed
-        interdum nunc ut tristique congue. Quisque maximus mauris et dui
-        sagittis scelerisque. Donec laoreet at turpis non molestie. Aenean dui
-        leo, rutrum ac nisl ac, accumsan feugiat eros. Curabitur tempor
-        vestibulum massa, vitae tincidunt justo congue at. Aliquam ullamcorper
-        sem elit, vestibulum cursus dui dictum vitae. Curabitur vestibulum
-        semper dolor, quis lacinia urna elementum vitae.
+        {t(
+          "Every piece reflects the mastery of Gozlan. A journey of passion, created to inspire. Unite tradition with contemporary brilliance. Let every detail speak of luxury and heritage. With Gozlan, elegance meets enduring beauty. Celebrate life’s milestones with timeless gold. Discover the art of excellence in every design. Gold that lasts forever, crafted just for you."
+        )}
       </Typography>
       <Grid container spacing={4} sx={{ my: 4 }}>
         <Grid item md="6">
@@ -169,20 +194,23 @@ const Page = () => {
         </Grid>
         <Grid item md="3">
           <Typography variant="caption" sx={{ mb: 3 }}>
-            Du Kan Vara Drabbad
+            {t("Timeless Luxury, Unparalleled Craftsmanship")}
           </Typography>
           <Typography variant="h6" sx={{ mb: 3 }}>
-            Kagt besk plötslig sportbarnsdöd fastoke ben reamatisk.
+            {t("Gozlan Jewelry")}
           </Typography>
           <Typography variant="body1" sx={{ mb: 3 }}>
-            Mara. Ambistat proskade tempofiering, reamatisk megaosmos. Memil
-            galna chips-sjukan till IVPA. Näringslots fronta varat i
-            kameratelefon liksom giganing.
+            {t(
+              "Where craftsmanship meets timeless elegance. Our designs reflect luxury across the globe. From the heart of Turkey to Dubai’s opulence. We transform gold into lasting masterpieces."
+            )}
+          </Typography>
+          <Typography variant="h6" sx={{ mb: 3 }}>
+            {t("Gozlan Jewelry")}
           </Typography>
           <Typography variant="body1" sx={{ mb: 3 }}>
-            Mara. Ambistat proskade tempofiering, reamatisk megaosmos. Memil
-            galna chips-sjukan till IVPA. Näringslots fronta varat i
-            kameratelefon liksom giganing.
+            {t(
+              "Your destination for beauty and refinement. We bring you exceptional designs of prestige. Cherish your memories with our golden creations."
+            )}
           </Typography>
         </Grid>
         <Grid item md="3">
@@ -191,10 +219,14 @@ const Page = () => {
             alt="2"
             style={{ width: "100%", height: "50vh", objectFit: "cover" }}
           />
+
+          <Typography variant="body1" sx={{ mt: 3, color: "text.secondary" }}>
+            {t("Gold and Beauty")}
+          </Typography>
           <Typography variant="caption" sx={{ mt: 3, color: "text.secondary" }}>
-            Mara. Ambistat proskade tempofiering, reamatisk megaosmos. Memil
-            galna chips-sjukan till IVPA. Näringslots fronta varat i
-            kameratelefon liksom giganing.
+            {t(
+              "Gold, the eternal symbol of elegance. It enhances the grace of every woman. From Turkey to Dubai, its glow inspires. A timeless reflection of strength and charm."
+            )}
           </Typography>
         </Grid>
       </Grid>

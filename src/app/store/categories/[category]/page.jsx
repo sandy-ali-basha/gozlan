@@ -12,9 +12,8 @@ import {
   MenuItem,
 } from "@mui/material";
 import ProductCard from "components/modules/ProductCard";
-import MenuIcon from "@mui/icons-material/Menu";
 import SideDrawer from "./_components/Drawer";
-import { CloseRounded } from "@mui/icons-material";
+import { CloseRounded, FilterAlt } from "@mui/icons-material";
 import bannerImg from "assets/images/banner-08.jpg";
 import BannerSection from "../_components/Banner";
 
@@ -35,15 +34,15 @@ export default function Category() {
     handleSortChange,
     sort,
   } = useCategory();
+
   const banners = {
     id: 1,
     title: "Diamonds are forever—and so are you",
     subtitle: "Embrace the Unseen Magic of Uniqueness...",
-    buttonText: "SHOP COLLECTION",
     backgroundImage: bannerImg, // Replace with your image path
     saleText: "CYBER MONDAY SALE",
   };
-
+  
   const SortFilter = () => {
     return (
       <FormControl
@@ -52,21 +51,23 @@ export default function Category() {
         sx={{ minWidth: 120, ml: { xs: 2, md: 0 } }}
       >
         <InputLabel>{t("Sort By")}</InputLabel>
-        <Select value={sort} onChange={handleSortChange} label="Sort By">
+        <Select value={sort} onChange={handleSortChange} label={t("Sort By")}>
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={"priceAsc"}>{t("Price: Low to High")}</MenuItem>
-          <MenuItem value={"priceDesc"}>{t("Price: High to Low")}</MenuItem>
-          <MenuItem value={"nameAsc"}>{t("Name: A-Z")}</MenuItem>
-          <MenuItem value={"nameDesc"}>{t("Name: Z-A")}</MenuItem>
+          <MenuItem value={"1"}>{t("Price: High to Low")}</MenuItem>
+          <MenuItem value={"2"}>{t("Price: Low to High")}</MenuItem>
+          <MenuItem value={"3"}>{t("Name: A-Z")}</MenuItem>
+          <MenuItem value={"4"}>{t("Name: Z-A")}</MenuItem>
         </Select>
       </FormControl>
     );
   };
+
   const [searchResults, setSearchResults] = useState([]);
+
   return (
-    <Box sx={{ px: 4 }}>
+    <Box sx={{ px: { md: 4, xs: 1 } }}>
       <Box
         sx={{
           display: "flex",
@@ -85,7 +86,7 @@ export default function Category() {
           }}
         >
           <IconButton color="inherit" edge="start" onClick={handleDrawerToggle}>
-            <MenuIcon />
+            <FilterAlt />
           </IconButton>
 
           <SortFilter data={Attr} />
@@ -137,7 +138,9 @@ export default function Category() {
             width: { xs: "100%", md: `calc(100% - 30%)` },
           }}
         >
-          <BannerSection banner={banners} />
+          <Box sx={{ my: 2 }}>
+            <BannerSection banner={banners} />
+          </Box>
           <Box
             sx={{
               display: { xs: "none", md: "flex" },
@@ -186,7 +189,8 @@ export default function Category() {
                       loading={false}
                       purchasable={item?.purchasable === "always"}
                       offer={item?.compare_price}
-                      category={"Gold"}
+                      category={item?.attributes[0]?.value}
+                      quantity={item?.quantity}
                     />
                   </Grid>
                 );
@@ -206,6 +210,7 @@ export default function Category() {
                       purchasable={item?.purchasable === "always"}
                       offer={item?.compare_price}
                       category={item?.attributes[0]?.value}
+                      quantity={item?.quantity}
                     />
                   </Grid>
                 );

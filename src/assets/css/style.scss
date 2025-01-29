@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Italiana&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Beiruti:wght@200..900&display=swap");
 
 /*------------------------------------------------
 
@@ -62,8 +63,8 @@ CSS STRUCTURE:
 
 /* Fonts */
 :root {
-  --body-font: "Jost", sans-serif;
-  --heading-font: "Italiana", serif;
+  --body-font: "Jost", "Beiruti", sans-serif;
+  --heading-font: "Italiana","Beiruti", serif;
 }
 
 /*----------------------------------------------*/
@@ -99,7 +100,7 @@ h6 {
   font-family: var(--heading-font);
   text-transform: uppercase;
   color: var(--black-color);
-  letter-spacing: 0.96px;
+  // letter-spacing: 0.96px;
 }
 h1 {
   font-size: 5rem;
@@ -136,7 +137,7 @@ a {
   font-weight: 400;
   text-transform: uppercase;
   text-decoration: none;
-  letter-spacing: 1.7px;
+  // letter-spacing: 1.7px;
   transition: 0.3s color ease-out;
 }
 a.light {
@@ -228,7 +229,7 @@ button {
   font-weight: 400;
   text-transform: uppercase;
   text-decoration: none;
-  letter-spacing: 1.7px;
+  // letter-spacing: 1.7px;
   transition: 0.3s color ease-out;
 }
 .btn {
@@ -307,7 +308,7 @@ label {
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  // letter-spacing: 1px;
 }
 textarea,
 select,
@@ -653,7 +654,7 @@ img.zoom-in {
   padding-right: 30px;
 }
 #footer-bottom a {
-  letter-spacing: normal;
+  // letter-spacing: normal;
 }
 
 /* 4. PAGES
@@ -666,7 +667,7 @@ img.zoom-in {
 .breadcrumbs a {
   font-weight: 500;
   text-transform: capitalize;
-  letter-spacing: normal;
+  // letter-spacing: normal;
 }
 
 /* Newsletter */
@@ -855,7 +856,7 @@ h5.widget-title {
 .swiper-button-prev,
 .swiper-button-next {
   color: #000000 !important;
-  
+
   &:hover {
     color: #5c5c5c;
   }

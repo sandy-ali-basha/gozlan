@@ -37,6 +37,7 @@ function App() {
   useEffect(() => {
     HttpRequestInterceptor();
     window.scrollTo(0, 0);
+    localStorage.setItem("i18nextLng", "en");
   }, []);
 
   return (

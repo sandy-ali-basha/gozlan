@@ -47,6 +47,10 @@ export default function BrandProducts({ data }) {
                 Price={item?.price}
                 link={`/store/product/${item?.id}/${item.name}`}
                 purchasable={item?.purchasable === "always"}
+                quantity={item?.quantity}
+                offer={item?.compare_price}
+                id={item?.id}
+                category={item?.attributes[0]?.value}
               />
             </SwiperSlide>
           ))}

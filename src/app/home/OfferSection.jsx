@@ -1,15 +1,16 @@
 import React from "react";
-import { Box, Grid, Typography, Button } from "@mui/material";
+import { Box, Grid, Typography, Button, Skeleton } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-const OfferSection = ({ banners }) => {
-    const { t } = useTranslation("index");
-  
+const OfferSection = ({ banners, isLoading }) => {
+  const { t } = useTranslation("index");
+  const items = isLoading ? Array.from({ length: 2 }) : banners || [];
+
   return (
     <Box sx={{ padding: "2rem" }}>
       <Grid container spacing={3}>
-        {banners.map((banner,index) => (
-          <Grid item xs={12} md={index === 0 ? 7 : 5} key={banner.id}>
+        {items?.map((banner, index) => (
+          <Grid item xs={12} md={index === 0 ? 7 : 5} key={index}>
             <Box
               sx={{
                 position: "relative",
@@ -29,32 +30,39 @@ const OfferSection = ({ banners }) => {
                 },
               }}
             >
-              <Box sx={{ maxWidth: "70%" }}>
-                <Typography
-                  variant="h5"
-                  sx={{ fontWeight: "bold", marginTop: "0.5rem" }}
-                >
-                  {banner.title}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{ marginTop: "0.5rem", marginBottom: "1rem" }}
-                >
-                  {banner.description}
-                </Typography>
-                <Button
-                  variant="text"
-                  sx={{
-                    color: "primary.main",
-                    textDecoration: "underline",
-                    fontWeight: "bold",
-                    padding: "0",
-                    fontSize: "14px",
-                  }}
-                >
-                  {t("Shop Now")}
-                </Button>
-              </Box>
+              {/* Display Skeleton Loader when loading */}
+              {isLoading ? (
+                <Skeleton variant="rectangular" width="100%" height="100%" />
+              ) : (
+                <>
+                  <Box sx={{ maxWidth: "70%" }}>
+                    <Typography
+                      variant="h5"
+                      sx={{ fontWeight: "bold", marginTop: "0.5rem" }}
+                    >
+                      {banner.title}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{ marginTop: "0.5rem", marginBottom: "1rem" }}
+                    >
+                      {banner.description}
+                    </Typography>
+                    <Button
+                      variant="text"
+                      sx={{
+                        color: "primary.main",
+                        textDecoration: "underline",
+                        fontWeight: "bold",
+                        padding: "0",
+                        fontSize: "14px",
+                      }}
+                    >
+                      {t("Shop Now")}
+                    </Button>
+                  </Box>
+                </>
+              )}
             </Box>
           </Grid>
         ))}

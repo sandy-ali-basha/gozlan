@@ -1,7 +1,7 @@
-import { useMemo, useState } from "react";
+import { _axios } from "interceptor/http-config";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { _cities } from "api/country/country";
 
 export const useNavBar = () => {
   const { t } = useTranslation("navbar");
@@ -30,11 +30,11 @@ export const useNavBar = () => {
       label: t("My Addresses"),
       onClick: () => navigate("/profile/addresses"),
     },
-    {
-      id: 5,
-      label: t("My Points"),
-      onClick: () => navigate("/profile/points"),
-    },
+    // {
+    //   id: 5,
+    //   label: t("My Points"),
+    //   onClick: () => navigate("/profile/points"),
+    // },
     {
       id: 5,
       label: t("Log out"),
@@ -44,27 +44,6 @@ export const useNavBar = () => {
       },
     },
   ];
-
-  const [cities, setCities] = useState([]);
-  const getCities = async () => {
-    _cities.index().then((response) => {
-      if (response.data.state) {
-        const formattedCities = response.data.state.map((city) => ({
-          id: city.id,
-          label: city.name,
-          onClick: () => {
-            localStorage.setItem("city", city.id);
-            window.location.reload();
-          },
-        }));
-        setCities(formattedCities);
-      }
-    });
-  };
-
-  useMemo(() => {
-    getCities();
-  }, []);
 
   const pages = [
     { id: "0", onClick: () => navigate("/"), label: t("Home") },
@@ -77,12 +56,17 @@ export const useNavBar = () => {
 
     { id: "5", onClick: () => navigate("/contact-us"), label: t("Contact Us") },
   ];
-
+  const [nav, setNav] = useState([]);
+  useMemo(() => {
+    _axios.get(`/navbar`).then((res) => {
+      setNav(res?.data);
+    });
+  }, []);
   return {
     settings,
     pages,
     navigate,
-    cities,
     t,
+    nav,
   };
 };

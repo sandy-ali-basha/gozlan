@@ -1,19 +1,18 @@
-import React, { useState } from "react";
-import Typography from "@mui/material/Typography";
+import React, { useState, useEffect } from "react";
 import {
   Box,
-  Button,
   Card,
   CardContent,
   CardMedia,
   CircularProgress,
+  Skeleton,
+  Typography,
 } from "@mui/material";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import CardShimmer from "components/customs/loaders/CardShimmer";
 import defaultImg from "assets/images/defaultImg.jpg";
 import { useTranslation } from "react-i18next";
 import { useAddToCart } from "hooks/cart/useAddToCart";
+
 export default function ProductCard({
   productName,
   Price,
@@ -24,10 +23,17 @@ export default function ProductCard({
   id,
   purchasable,
   category,
+  quantity,
 }) {
   const { handleAddToCart, loadingCart } = useAddToCart();
   const { t } = useTranslation("index");
   const [hovered, setHovered] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  // Detect touch devices
+  useEffect(() => {
+    setIsTouchDevice(window.matchMedia("(hover: none)").matches);
+  }, []);
 
   return (
     <Card
@@ -36,102 +42,63 @@ export default function ProductCard({
         height: "70vh",
         borderRadius: "0px",
         "&:hover .price": {
-          transform: "translateY(100%)",
+          transform: isTouchDevice ? "none" : "translateY(100%)",
         },
         "&:hover .add-to-cart": {
-          transform: "translateY(0)",
+          transform: isTouchDevice ? "none" : "translateY(0)",
         },
       }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      onMouseEnter={() => !isTouchDevice && setHovered(true)}
+      onMouseLeave={() => !isTouchDevice && setHovered(false)}
     >
-      {" "}
-      <Link
-        disabled={!loading}
-        to={link}
-        component="a"
-        style={{ textDecoration: "none" }}
-      >
+      <Link to={loading ? "#" : link} style={{ textDecoration: "none" }}>
         {loading ? (
-          <CardShimmer
-            style={{
-              width: "100%",
-              height: { xs: "30vh", md: "40vh" },
-              borderRadius: "0px",
-            }}
-          />
+          <Skeleton variant="rectangular" width="100%" height="40vh" />
         ) : (
-          <>
-            <Box
+          <Box
+            sx={{
+              position: "relative",
+              overflow: "hidden",
+              width: "100%",
+              height: "40vh",
+            }}
+          >
+            <CardMedia
               sx={{
-                position: "relative",
-                overflow: "hidden", // Keeps the image confined within the frame
                 width: "100%",
-                height: { xs: "30vh", md: "40vh" },
+                height: "100%",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                transition: "transform 0.3s ease-in-out",
+                "&:hover": {
+                  transform: isTouchDevice ? "none" : "scale(1.3)",
+                },
               }}
-            >
-              <CardMedia
-                sx={{
-                  width: "100%",
-                  height: "100%",
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  transition: "transform 0.3s ease-in-out", // Smooth scaling transition
-                  "&:hover": {
-                    transform: "scale(1.3)", // Zoom in effect
-                  },
-                }}
-                image={productImage || defaultImg}
-                title={productName}
-              />
-            </Box>
-          </>
+              image={productImage || defaultImg}
+              title={productName}
+            />
+          </Box>
         )}
       </Link>
+
       <CardContent>
-        <Typography
-          variant="body2"
-          sx={{ fontWeight: "bold", color: "text.secondary" }}
-        >
-          {loading ? (
-            <CardShimmer
-              style={{
-                width: "100%",
-                height: "20px",
-                borderRadius: "0px",
-              }}
-            />
-          ) : (
-            category
-          )}
+        {/* Category */}
+        <Typography variant="body2" sx={{ fontWeight: "bold", color: "text.secondary" }}>
+          {loading ? <Skeleton width="60%" height={20} /> : category}
         </Typography>
+
+        {/* Product Name */}
         <Typography variant="body1" color="initial" sx={{ py: 2 }}>
-          {loading ? (
-            <CardShimmer
-              style={{
-                width: "100%",
-                height: "20px",
-                borderRadius: "0px",
-              }}
-            />
-          ) : (
-            productName?.split(" ").slice(0, 7).join(" ") + ' ...'
-          )}
+          {loading ? <Skeleton width="80%" height={20} /> : productName?.split(" ").slice(0, 7).join(" ") + " ..."}
         </Typography>
-        <Box
-          sx={{
-            position: "relative",
-            overflow: "hidden",
-          }}
-        >
-          {/* Price Display */}
+
+        {/* Price */}
+        <Box sx={{ position: "relative", overflow: "hidden" }}>
           <Box
             className="price"
             sx={{
               transition: "transform 0.3s ease-in-out",
-              transform: hovered ? "translateY(100%)" : "translateY(0)",
-              alignItems: "flex-start",
-              justifyContent: "flex-start",
+              transform: hovered || isTouchDevice ? "translateY(100%)" : "translateY(0)",
               display: "flex",
               gap: 2,
             }}
@@ -145,19 +112,9 @@ export default function ProductCard({
               }}
               color={offer ? "text.secondary" : "primary.red"}
             >
-              {loading ? (
-                <Box
-                  sx={{
-                    width: "100%",
-                    height: "20px",
-                    borderRadius: "0px",
-                    backgroundColor: "#e0e0e0",
-                  }}
-                />
-              ) : (
+              {loading ? <Skeleton width="50%" height={20} /> : (
                 <>
-                  {offer > 0 ? offer.toLocaleString() : Price.toLocaleString()}{" "}
-                  {t("currency")}
+                  {offer > 0 ? offer.toLocaleString() : Price.toLocaleString()} {t("currency")}
                 </>
               )}
             </Typography>
@@ -168,16 +125,17 @@ export default function ProductCard({
             )}
           </Box>
 
-          {/* Add to Cart Button */}
+          {/* Add to Cart - Always visible on touch devices */}
           {purchasable && !loading && (
             <Box
               className="add-to-cart"
               sx={{
-                position: "absolute",
-                bottom: "0",
-                transform: "translate(-50%, 100%)",
+                position: isTouchDevice ? "relative" : "absolute",
+                bottom: isTouchDevice ? "unset" : "0",
+                transform: isTouchDevice ? "none" : "translate(-50%, 100%)",
                 transition: "transform 0.3s ease-in-out",
                 cursor: "pointer",
+                mt: isTouchDevice ? 1 : 0, // Adds space below price on touch devices
               }}
               onClick={() => handleAddToCart(id)}
             >
@@ -185,17 +143,23 @@ export default function ProductCard({
                 <CircularProgress size={20} />
               ) : (
                 <Typography sx={{ color: "primary.red", fontWeight: "bold" }}>
-                  Add To Cart{" "}
+                  {t("Add To Cart")}
                 </Typography>
               )}
             </Box>
           )}
         </Box>
+
+        {/* Stock Status */}
         <Typography
           variant="caption"
-          sx={{ fontWeight: "bold", py: 2, color: "success.main" }}
+          sx={{
+            fontWeight: "bold",
+            py: 2,
+            color: quantity > 0 ? "success.main" : "error.main",
+          }}
         >
-          IN STOCK
+          {loading ? <Skeleton width="40%" height={20} /> : quantity > 0 ? t("IN STOCK") : t("SOLD OUT")}
         </Typography>
       </CardContent>
     </Card>

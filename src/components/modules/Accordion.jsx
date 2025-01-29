@@ -62,7 +62,7 @@ export default function CAccordion({ data, handleCheked }) {
           key={idx}
           expanded={selectedCategoryId === item.id}
           onChange={handleAccordionChange(item.id)}
-          sx={{ boxShadow: "none" ,background:'transparent'}}
+          sx={{ boxShadow: "none", background: "transparent" }}
         >
           <AccordionSummary
             expandIcon={
@@ -81,22 +81,31 @@ export default function CAccordion({ data, handleCheked }) {
             <AccordionDetails>
               <RadioGroup value={selectedValueId} onChange={handleRadioChange}>
                 {AttrValuesData?.product_attributes_values?.map(
-                  (option, idx) => (
-                    <FormControlLabel
-                      sx={{
-                        fontSize: 2,
-                        borderTop: 1,
-                        borderColor: "#dddddd0",
-                      }}
-                      key={idx}
-                      id={option.id}
-                      control={<Radio value={option.id} />}
-                      label={
-                        option.translations?.find((t) => t.locale === lang)
-                          ?.value
-                      }
-                    />
-                  )
+                  (option, idx) => {
+                    console.log(lang)
+                    console.log(
+                      "d",
+                      option.translations?.find((t) => t.locale === lang)?.value
+                    );
+                    return (
+                      <>
+                        <FormControlLabel
+                          sx={{
+                            fontSize: 2,
+                            borderTop: 1,
+                            borderColor: "#dddddd0",
+                          }}
+                          key={idx}
+                          id={option.id}
+                          control={<Radio value={option.id} />}
+                          label={
+                            option.translations?.find((t) => t.locale === lang)
+                              ?.value
+                          }
+                        />
+                      </>
+                    );
+                  }
                 )}
               </RadioGroup>
             </AccordionDetails>

@@ -420,7 +420,9 @@ const StepCart = ({ handleNext }) => {
           </Grid>
         )}
       </Grid>
-      <Simillar id={data?.data?.products[0]?.id} />
+      {data?.data?.products?.length > 0 ?? (
+        <Simillar id={data?.data?.products[0]?.id} />
+      )}
     </Container>
   );
 };

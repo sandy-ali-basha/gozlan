@@ -14,28 +14,13 @@ import * as yup from "yup";
 import Icon from "components/modules/icon";
 import { Alert, TextField } from "@mui/material";
 import { _AuthApi } from "api/auth";
+import { useTranslation } from "react-i18next";
 
 const defaultValues = {
   newPassword: "",
   currentPassword: "",
   confirmNewPassword: "",
 };
-
-const schema = yup.object().shape({
-  currentPassword: yup.string().min(8).required("Current password is required"),
-  newPassword: yup
-    .string()
-    .min(8, "Password must be at least 8 characters")
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/,
-      "Must contain 8 characters, 1 uppercase, 1 lowercase, 1 number and 1 special character"
-    )
-    .required("New password is required"),
-  confirmNewPassword: yup
-    .string()
-    .oneOf([yup.ref("newPassword")], "Passwords must match")
-    .required("Confirm new password is required"),
-});
 
 const ChangePasswordCard = () => {
   const [values, setValues] = useState({
@@ -46,7 +31,24 @@ const ChangePasswordCard = () => {
   const [Message, setMessage] = useState();
   const [Error, setError] = useState(false);
   const [Loading, setLoading] = useState(false);
+  const { t } = useTranslation("index");
 
+  const schema = yup.object().shape({
+    currentPassword: yup.string().min(8).required(t("Current password is required")),
+    newPassword: yup
+      .string()
+      .min(8, t("Password must be at least 8 characters"))
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/,
+       t("Must contain 8 characters, 1 uppercase, 1 lowercase, 1 number and 1 special character")
+      )
+      .required(t("New password is required")),
+    confirmNewPassword: yup
+      .string()
+      .oneOf([yup.ref("newPassword")], t("Passwords must match"))
+      .required(t("Confirm new password is required")),
+  });
+  
   const {
     reset,
     control,
@@ -84,11 +86,11 @@ const ChangePasswordCard = () => {
       .passEdit(data)
       .then((res) => {
         console.log("res", res);
-        if (res?.data?.code == 200) {
-          setMessage("Password Changed Successfully");
+        if (res?.data?.code === 200) {
+          setMessage(t("Password Changed Successfully"));
           reset(defaultValues);
         } else {
-          setError(res?.error || "An unexpected error occurred");
+          setError(res?.error || t("An unexpected error occurred"));
         }
       })
       .finally(() => setLoading(false));
@@ -96,7 +98,7 @@ const ChangePasswordCard = () => {
 
   return (
     <Card>
-      <CardHeader title="Change Password" />
+      <CardHeader title={t("Change Password")} />
       <CardContent>
         <form onSubmit={handleSubmit(onPasswordFormSubmit)}>
           <Grid container spacing={5}>
@@ -109,7 +111,7 @@ const ChangePasswordCard = () => {
                     fullWidth
                     value={value}
                     onChange={onChange}
-                    label="Current Password"
+                    label={t("Current Password")}
                     placeholder="············"
                     id="input-current-password"
                     error={Boolean(errors.currentPassword)}
@@ -150,7 +152,7 @@ const ChangePasswordCard = () => {
                     fullWidth
                     value={value}
                     onChange={onChange}
-                    label="New Password"
+                    label={t("New Password")}
                     id="input-new-password"
                     placeholder="············"
                     error={Boolean(errors.newPassword)}
@@ -190,7 +192,7 @@ const ChangePasswordCard = () => {
                     value={value}
                     onChange={onChange}
                     placeholder="············"
-                    label="Confirm New Password"
+                    label={t("Confirm New Password")}
                     id="input-confirm-new-password"
                     error={Boolean(errors.confirmNewPassword)}
                     type={values.showConfirmNewPassword ? "text" : "password"}
@@ -220,7 +222,7 @@ const ChangePasswordCard = () => {
               />
             </Grid>
             <Grid item xs={12}>
-              <Typography variant="h6">Password Requirements:</Typography>
+              <Typography variant="h6">{t("Password Requirements:")}</Typography>
               <Box
                 component="ul"
                 sx={{
@@ -229,9 +231,9 @@ const ChangePasswordCard = () => {
                   "& li": { mb: 1.5, color: "text.secondary" },
                 }}
               >
-                <li>Minimum 8 characters long - the more, the better</li>
-                <li>At least one lowercase & one uppercase character</li>
-                <li>At least one number, symbol, or whitespace character</li>
+                <li>{t("Minimum 8 characters long - the more, the better")}</li>
+                <li>{t("At least one lowercase & one uppercase character")}</li>
+                <li>{t("At least one number, symbol, or whitespace character")}</li>
               </Box>
             </Grid>
             <Box>
@@ -242,8 +244,8 @@ const ChangePasswordCard = () => {
               )}
             </Box>
             <Grid item xs={12}>
-              <Button  variant="outlined" type="submit" sx={{ mr: 4 }}>
-                Save Changes
+              <Button variant="outlined" type="submit" sx={{ mr: 4 }}>
+                {t("Save Changes")}
               </Button>
               <Button
                 type="reset"
@@ -251,7 +253,7 @@ const ChangePasswordCard = () => {
                 color="secondary"
                 onClick={() => reset(defaultValues)}
               >
-                Reset
+                {t("Reset")}
               </Button>
             </Grid>
           </Grid>

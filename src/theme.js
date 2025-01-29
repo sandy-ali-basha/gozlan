@@ -41,7 +41,13 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: ["Jost", "Italiana", "Reddit Sans", "sans-serif"].join(","),
+    fontFamily: [
+      "Jost",
+      "Beiruti",
+      "Italiana",
+      "Reddit Sans",
+      "sans-serif",
+    ].join(","),
     h1: {
       fontWeight: 600,
       color: "#2E2E2E", // Ensures headers match your design
@@ -87,8 +93,11 @@ const theme = createTheme({
             color: "#e92a2f",
           },
           "&.Mui-selected": {
-            border: "1px solid #f0787b",
             color: "#e92a2f !important",
+            border: "1px solid #f0787b",
+            "@media (max-width: 959px)": {
+              border: "none", // Remove border on mobile
+            },
           },
           "@media (min-width: 960px)": {
             minWidth: 130,
@@ -96,6 +105,7 @@ const theme = createTheme({
         },
       },
     },
+    
     MuiButton: {
       styleOverrides: {
         root: {
@@ -175,7 +185,7 @@ const theme = createTheme({
         },
       },
     },
-   
+
     MuiStepRoot: {
       styleOverrides: {
         label: {

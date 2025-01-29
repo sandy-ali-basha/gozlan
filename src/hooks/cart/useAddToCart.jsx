@@ -3,10 +3,11 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Swal from "sweetalert2";
 
-export const useAddToCart = (coupon_code) => {
+export const useAddToCart = () => {
   const { t } = useTranslation("index");
   const [loadingCart, setLoading] = useState(false);
   const cart_id = localStorage.getItem("cart_id");
+  
   const handleAddToCart = (id) => {
     const data = {
       products: {

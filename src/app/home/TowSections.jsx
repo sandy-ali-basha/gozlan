@@ -1,50 +1,61 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography, Skeleton } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
-const TwoSections = (data) => {
+const TwoSections = ({ data, isLoading }) => {
+  const items = isLoading ? Array.from({ length: 2 }) : data || [];
+  const { t } = useTranslation("index");
   return (
     <Grid container sx={{ p: 4 }} spacing={4}>
-      {data?.data?.map((item) => (
-        <Grid item md="6">
+      {items.map((item, index) => (
+        <Grid item md={6} key={item?.id || index}>
           <Box
             sx={{
               position: "relative",
               overflow: "hidden",
               height: "80vh",
-              backgroundImage: `url(${item?.image})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               display: "flex",
               alignItems: "flex-end",
               padding: "1.5rem",
               color: "white",
-              "&:hover": {
-                backgroundBlendMode: "lighten",
-                backgroundColor: "rgba(255, 255, 255, 0.3)",
-                transition: "all 0.3s ease",
-              },
+              backgroundImage: isLoading ? "none" : `url(${item?.image})`,
+              backgroundColor: isLoading ? "#e0e0e0" : "transparent",
             }}
           >
-            <Box sx={{ maxWidth: "70%" }}>
+            {isLoading && (
+              <Skeleton
+                variant="rectangular"
+                width="100%"
+                height="100%"
+                sx={{ position: "absolute", top: 0, left: 0 }}
+              />
+            )}
+            <Box sx={{ maxWidth: "70%", position: "relative", zIndex: 1 }}>
               <Typography
                 variant="h5"
                 sx={{ fontWeight: "bold", marginTop: "0.5rem" }}
               >
-                {item?.title}
+                {isLoading ? <Skeleton width="80%" height={30} /> : item?.title}
               </Typography>
 
-              <Button
-                variant="text"
-                href={item?.cta_link}
-                sx={{
-                  color: "primary.main",
-                  textDecoration: "underline",
-                  fontWeight: "bold",
-                  padding: "0",
-                  fontSize: "14px",
-                }}
-              >
-                Discover
-              </Button>
+              {isLoading ? (
+                <Skeleton width={100} height={25} />
+              ) : (
+                <Button
+                  variant="text"
+                  href={item?.cta_link}
+                  sx={{
+                    color: "primary.main",
+                    textDecoration: "underline",
+                    fontWeight: "bold",
+                    padding: "0",
+                    fontSize: "14px",
+                  }}
+                >
+                  {t("Discover")}
+                </Button>
+              )}
             </Box>
           </Box>
         </Grid>
@@ -52,4 +63,5 @@ const TwoSections = (data) => {
     </Grid>
   );
 };
+
 export default TwoSections;

@@ -1,13 +1,15 @@
 import React from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, Skeleton } from "@mui/material";
 
-const Categories = (data) => {
+const Categories = ({ data, isLoading }) => {
+  const items = isLoading ? Array.from({ length: 6 }) : data || [];
+
   return (
     <Box sx={{ padding: "2rem" }}>
       <Grid container spacing={2}>
-        {data?.data?.map((category) => (
-          <Grid item xs={12} sm={6} md={4} lg={2} key={category.id}>
-            <a href={category?.cta_link}>
+        {items.map((category, index) => (
+          <Grid item xs={12} sm={6} md={4} lg={2} key={category?.id || index}>
+            <a href={!isLoading ? category?.cta_link : "/"}>
               <Box
                 sx={{
                   position: "relative",
@@ -18,19 +20,29 @@ const Categories = (data) => {
                   },
                 }}
               >
-                {/* Background Image */}
-                <img
-                  src={category?.image}
-                  alt={category?.title}
-                  style={{
-                    width: "100%",
-                    aspectRatio: 1,
-                    objectFit: "cover",
-                    transition: "transform 0.3s ease-in-out",
-                  }}
-                  loading="lazy"
-                />
-                {/* Overlay Text */}
+                {/* Image or Skeleton Placeholder */}
+                {isLoading ? (
+                  <Skeleton
+                    variant="rectangular"
+                    width="100%"
+                    height="100%"
+                    sx={{ aspectRatio: 1 }}
+                  />
+                ) : (
+                  <img
+                    src={category?.image}
+                    alt={category?.title}
+                    style={{
+                      width: "100%",
+                      aspectRatio: 1,
+                      objectFit: "cover",
+                      transition: "transform 0.3s ease-in-out",
+                    }}
+                    loading="lazy"
+                  />
+                )}
+
+                {/* Overlay Text or Skeleton Placeholder */}
                 <Box
                   sx={{
                     position: "absolute",
@@ -44,19 +56,29 @@ const Categories = (data) => {
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "center",
-                    alignItes: "center",
+                    alignItems: "center",
+                    background: isLoading ? "rgba(0,0,0,0.1)" : "none",
                   }}
                 >
-                  <Typography
-                    variant="h6"
-                    color="white"
-                    sx={{ fontWeight: "bold" }}
-                  >
-                    {category?.title}
-                  </Typography>
-                  <Typography color="white" variant="body2">
-                    {category?.description}
-                  </Typography>
+                  {isLoading ? (
+                    <>
+                      <Skeleton width="60%" height={30} />
+                      <Skeleton width="80%" height={20} />
+                    </>
+                  ) : (
+                    <>
+                      <Typography
+                        variant="h6"
+                        color="white"
+                        sx={{ fontWeight: "bold" }}
+                      >
+                        {category?.title}
+                      </Typography>
+                      <Typography color="white" variant="body2">
+                        {category?.description}
+                      </Typography>
+                    </>
+                  )}
                 </Box>
               </Box>
             </a>

@@ -8,10 +8,10 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { LanguageOutlined } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 import { settingsStore } from "store/settingsStore";
 import axios from "axios";
+import { Language } from "@mui/icons-material";
 
 const LanguageSelector = () => {
   const { t, i18n } = useTranslation();
@@ -49,7 +49,14 @@ const LanguageSelector = () => {
     <Box sx={{ mx: "10px" }}>
       <Tooltip title={t("Change Language")}>
         <IconButton onClick={handleClick} sx={{ p: 0 }}>
-          <Typography sx={{ color: "white" }}>English</Typography>
+          <Typography
+            sx={{ color: "white", display: { xs: "none", md: "block" } }}
+          >
+            English
+          </Typography>
+          <Language
+            sx={{ display: { xs: "block", md: "none" }, color: "#212529" }}
+          />
         </IconButton>
       </Tooltip>
       <Menu
@@ -62,7 +69,7 @@ const LanguageSelector = () => {
       >
         <MenuItem onClick={() => handleLanguageChange("en")}>English</MenuItem>
         <MenuItem onClick={() => handleLanguageChange("ar")}>عربي</MenuItem>
-        <MenuItem onClick={() => handleLanguageChange("kr")}>کوردی</MenuItem>
+        {/* <MenuItem onClick={() => handleLanguageChange("kr")}>کوردی</MenuItem> */}
       </Menu>
     </Box>
   );

@@ -24,17 +24,16 @@ import { _AuthApi } from "api/auth";
 import logo from "assets/images/logo.png";
 
 function NavBar() {
-  const { settings, pages, navigate, t } = useNavBar();
+  const { settings, pages, navigate, t, nav } = useNavBar();
 
   // Get the cart count from local storage
   const cartCount = parseInt(localStorage.getItem("cart_count")) || 0;
-
+  const lang = localStorage.getItem("i18nextLng");
   return (
     <AppBar
       position="relative"
       background="transparent"
       sx={{
-        
         zIndex: "99",
         width: "100%",
         background: "transparent",
@@ -50,49 +49,41 @@ function NavBar() {
           minHeight: "50px",
           gap: 3,
           justifyContent: "center",
-          display:{md:'flex',xs:'none'},
+          display: { md: "flex", xs: "none" },
         }}
         disableGutters
       >
-        <Typography
-          variant="div"
-          component="a"
-          href="/"
-          sx={{ color: "#212529", fontSize: "11px", letterSpacing: "-0.10px" }}
-          to="/"
-        >
-          Up to 40% Off Everything
-        </Typography>
-        <Divider
-          orientation="vertical"
-          flexItem
-          sx={{ bordercolor: "#212529" }}
-        ></Divider>
-        <Typography
-          variant="div"
-          component="a"
-          href="/"
-          sx={{ color: "#212529", fontSize: "11px", letterSpacing: "-0.10px" }}
-        >
-          30% Off Most Loveled - New Lines Added
-        </Typography>
-        <Divider
-          orientation="vertical"
-          flexItem
-          sx={{ bordercolor: "#212529" }}
-        ></Divider>
-        <Typography
-          variant="div"
-          component="a"
-          href="/"
-          sx={{ color: "#212529", fontSize: "11px", letterSpacing: "-0.10px" }}
-        >
-          Free Delivery for Next 3 Orders
-        </Typography>
+        {nav &&
+          nav?.data?.navbar?.map((item, idx) => {
+            return (
+              <>
+                <Typography
+                  variant="div"
+                  component="a"
+                  href={item?.link}
+                  sx={{
+                    color: "#212529",
+                    fontSize: "11px",
+                    letterSpacing: "-0.10px",
+                  }}
+                >
+                  {lang === "en" ? item?.text : item?.text_ar}
+                </Typography>
+                <Divider
+                  orientation="vertical"
+                  flexItem
+                  sx={{
+                    bordercolor: "#212529",
+                    display: idx < 2 ? "flex" : "none",
+                  }}
+                ></Divider>
+              </>
+            );
+          })}
       </Toolbar>
       <Toolbar
         sx={{
-          display:{md:'flex',xs:'none'}, 
+          display: { md: "flex", xs: "none" },
           background: "#212529",
           color: "text.white",
           minHeight: "50px",
@@ -106,25 +97,37 @@ function NavBar() {
             variant="div"
             component="a"
             href="/"
-            sx={{ color: "text.white", fontSize: "11px", letterSpacing: "-0.10px" }}
+            sx={{
+              color: "text.white",
+              fontSize: "11px",
+              letterSpacing: "-0.10px",
+            }}
           >
-            My Orders
+            {t("My Orders")}
           </Typography>
           <Typography
             variant="div"
             component="a"
-            href="/"
-            sx={{ color: "text.white", fontSize: "11px", letterSpacing: "-0.10px" }}
+            href="/profile/account"
+            sx={{
+              color: "text.white",
+              fontSize: "11px",
+              letterSpacing: "-0.10px",
+            }}
           >
-            Account
+            {t("Account")}
           </Typography>
           <Typography
             variant="div"
             component="a"
-            href="/"
-            sx={{ color: "text.white", fontSize: "11px", letterSpacing: "-0.10px" }}
+            href="/profile/addresses"
+            sx={{
+              color: "text.white",
+              fontSize: "11px",
+              letterSpacing: "-0.10px",
+            }}
           >
-            Wishlist
+            {t("Addresses")}
           </Typography>
         </Box>
 
@@ -142,7 +145,7 @@ function NavBar() {
               letterSpacing: "-0.10px",
             }}
           >
-            Get Support From An Expert -
+            {t("Get Support From An Expert")} -
             <Typography
               variant="div"
               component="a"
@@ -154,7 +157,7 @@ function NavBar() {
                 fontWeight: "bold",
               }}
             >
-              (+20 1080 7499 41)
+              (+90 553 808 0000)
             </Typography>
           </Typography>
           <LanguageSelector />
@@ -173,9 +176,10 @@ function NavBar() {
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
+              width: { md: "6vw", xs: "20vw" },
             }}
           >
-            <img alt="logo" src={logo} style={{ width: "6vw" }} />
+            <img alt="logo" src={logo} style={{ width: "inherit" }} />
           </Typography>
           <Box
             sx={{
@@ -207,9 +211,10 @@ function NavBar() {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              width: { md: "10vw", xs: "25vw" },
             }}
           >
-            <img alt="logo" style={{ width: "10vw" }} src={logo} />
+            <img alt="logo" style={{ width: "inherit" }} src={logo} />
           </Typography>
           <Box
             sx={{
@@ -259,6 +264,9 @@ function NavBar() {
                 {t("sign in")}
               </Button>
             )}
+          </Box>
+          <Box sx={{ display: { md: "none", xs: "block" } }}>
+            <LanguageSelector />
           </Box>
         </Toolbar>
       </Container>

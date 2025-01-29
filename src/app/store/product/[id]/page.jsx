@@ -9,6 +9,7 @@ import {
   Typography,
   Button,
   CircularProgress,
+  Skeleton,
 } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import defualt from "assets/images/defaultImg.jpg";
@@ -39,60 +40,60 @@ function Product() {
   const { data: features, isLoading: featuresLoading } = useFeatures();
   const { handleAddToCart, loadingCart } = useAddToCart();
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   return (
     <Container sx={{ mt: 5 }}>
       <Grid container>
         <Grid item xs={12} md={6}>
-          <Swiper navigation={true} modules={[Navigation]} spaceBetween={10}>
-            {data?.data?.images ? (
-              data?.data?.images?.map((item, idx) => (
-                <SwiperSlide key={idx}>
-                  <Box sx={{ width: "100%", height: "80vh"}}>
+          {isLoading ? (
+            <Skeleton width={"100%"} height={"100%"} />
+          ) : (
+            <Swiper navigation={true} modules={[Navigation]} spaceBetween={10}>
+              {data?.data?.images ? (
+                data?.data?.images?.map((item, idx) => (
+                  <SwiperSlide key={idx}>
+                    <Box sx={{ width: "100%", height: "80vh" }}>
+                      <img
+                        src={item?.image_path}
+                        alt={`Slide`}
+                        style={{
+                          objectFit: "contain",
+                          width: "100%",
+                          height: "100%",
+                        }}
+                        quality={100}
+                      />
+                    </Box>
+                  </SwiperSlide>
+                ))
+              ) : (
+                <SwiperSlide>
+                  <Box sx={{ width: "100%", height: "100%" }}>
                     <img
-                      src={item?.image_path}
-                      alt={`Slide`}
+                      src={defualt}
                       style={{
-                        objectFit: "contain",
+                        objectFit: "cover",
                         width: "100%",
-                        height: "100%"
+                        height: "100%",
                       }}
                       quality={100}
+                      alt=""
                     />
                   </Box>
                 </SwiperSlide>
-              ))
-            ) : (
-              <SwiperSlide>
-                <Box sx={{ width: "100%", height: "100%" }}>
-                  <img
-                    src={defualt}
-                    style={{
-                      objectFit: "cover",
-                      width: "100%",
-                      height: "100%"
-                    }}
-                    quality={100}
-                    alt=""
-                  />
-                </Box>
-              </SwiperSlide>
-            )}
-          </Swiper>
+              )}
+            </Swiper>
+          )}
         </Grid>
         <Grid xs={12} md={6}>
-          {isLoading ? (
-            <CardShimmer />
-          ) : (
-            <Typography
-              sx={{ px: 2 }}
-              color="initial"
-              variant="h5"
-              fontWeight={"bold"}
-            >
-              {data?.data?.name}
-            </Typography>
-          )}
+          <Typography
+            sx={{ px: 2 }}
+            color="initial"
+            variant="h5"
+            fontWeight={"bold"}
+          >
+            {isLoading ? <Skeleton /> : data?.data?.name}
+          </Typography>
 
           <Box
             sx={{
@@ -105,10 +106,10 @@ function Product() {
             }}
           >
             <Typography variant="h5" color="text.primary">
-              {t("Price")}:
+              {isLoading ? <Skeleton width="20%" /> : t("Price")}:
             </Typography>
             {isLoading ? (
-              <CardShimmer />
+              <Skeleton width="50%" />
             ) : (
               data?.data?.compare_price > 0 && (
                 <Typography
@@ -124,7 +125,7 @@ function Product() {
               )
             )}
             {isLoading ? (
-              <CardShimmer />
+              <Skeleton width="60%" height={30} />
             ) : (
               data?.data?.price && (
                 <Typography
@@ -140,7 +141,8 @@ function Product() {
               <Chip
                 color="success"
                 size="small"
-                sx={{ px: "1" }}
+                variant="outlined"
+                sx={{ px: "1", borderRadius: "0px" }}
                 label={` - ${data?.data?.compare_price - data?.data?.price}`}
               />
             )}{" "}
@@ -187,12 +189,7 @@ function Product() {
               )} */}
 
               {isLoading ? (
-                <CardShimmer
-                  style={{
-                    width: "100px",
-                    height: "15px",
-                  }}
-                />
+                <Skeleton width="80%" height={20} />
               ) : (
                 data?.data?.attributes &&
                 data?.data?.attributes?.map((item, idx) => (
@@ -200,6 +197,7 @@ function Product() {
                     label={item.value}
                     sx={{
                       m: 1,
+                      borderRadius: "0px",
                     }}
                     color="primary"
                     variant="outlined"
@@ -221,7 +219,11 @@ function Product() {
 
           <Box sx={{ mx: 2 }}>
             {isLoading ? (
-              <CardShimmer style={{ width: "80%", height: "50px" }} />
+              <>
+                <Skeleton width="100%" height={20} />
+                <Skeleton width="100%" height={20} />
+                <Skeleton width="100%" height={20} />
+              </>
             ) : (
               <>
                 <Typography
@@ -241,7 +243,7 @@ function Product() {
 
           <Box sx={{ px: 2 }}>
             {data?.data?.properties && isLoading ? (
-              <CardShimmer />
+              <Skeleton width="20%" height={30} />
             ) : (
               data?.data?.properties?.map((item, idx) => (
                 <Chip
@@ -258,16 +260,14 @@ function Product() {
           </Box>
 
           <Box sx={{ my: 5, px: 3 }}>
-            {featuresLoading && (
-              <Shimmer style={{ width: "100%", height: "100%" }} />
-            )}
+            {featuresLoading && <Skeleton width="100%" height="100%" />}
             <Swiper spaceBetween={10} slidesPerView={5}>
               {features &&
                 features?.data?.map((item, idx) => (
                   <SwiperSlide key={idx}>
                     <Box
                       sx={{
-                        width: "100%"
+                        width: "100%",
                       }}
                     >
                       <img
@@ -288,7 +288,7 @@ function Product() {
             <Box display="flex" alignItems="center" justifyContent="center">
               <Button
                 size="large"
-                sx={{ width: "90%", p: 1, mt: 2}}
+                sx={{ width: "90%", p: 1, mt: 2 }}
                 variant="outlined"
                 color="secondary"
                 onClick={() => handleAddToCart(data?.data?.id)}
@@ -312,7 +312,10 @@ function Product() {
       </Box>
 
       <Box sx={{ my: 5, px: 3 }}>
-        {SliderLoading && <Shimmer style={{ width: "100%", height: "100%" }} />}
+        {SliderLoading && <Skeleton  sx={{
+                    width: "100%",
+                    height: { md: "80vh" },
+                  }}/>}
         <Swiper>
           {Slider &&
             Slider?.data?.images?.map((item, idx) => (
@@ -338,7 +341,6 @@ function Product() {
         </Swiper>
       </Box>
       <Simillar id={data?.data?.id} />
-      
     </Container>
   );
 }

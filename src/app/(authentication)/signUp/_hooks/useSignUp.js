@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { _AuthApi } from "api/auth";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useNavigation } from "react-router-dom";
+import { _cart } from "api/cart/_cart";
 
 const phoneRegExp =
   /^((\+[1-9]{1,4}[ \-]*)|(\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
@@ -66,6 +67,8 @@ export const useSignUp = () => {
   const { register, handleSubmit, formState, setValue } = useForm(formOptions);
   const { errors } = formState;
   const navigate = useNavigate();
+
+  const cart_id = localStorage.getItem("cart_id");
   const onSubmit = (input) => {
     setLoading(true);
 
@@ -94,6 +97,10 @@ export const useSignUp = () => {
           console.log("data", res?.data?.data);
           _AuthApi.storeToken(res?.data?.data?.token);
 
+          const data = { user_id: res?.data?.data?.user_id };
+          if (cart_id) _cart.AddToCart({ data, cart_id });
+
+          //** */
           navigate("/");
         } else {
           setError(res?.data?.error || "An unexpected error occurred");

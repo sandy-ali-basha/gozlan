@@ -1,4 +1,4 @@
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useTranslation } from "react-i18next";
@@ -54,7 +54,7 @@ export const useAddressDialog = ({ handleClose }) => {
     }
   );
 
-  const userData = JSON.parse(localStorage.getItem("userData"));
+  const userData = JSON.parse(localStorage.getItem("userData")) || {};
 
   const handleCreate = (input) => {
     if (!userData || !userData.user_id) {
@@ -67,7 +67,7 @@ export const useAddressDialog = ({ handleClose }) => {
     const newInput = {
       ...input,
       user_id: userData.user_id,
-      country_id: 2,
+      country_id:228,
       billing_default: checked,
       shipping_default: checked,
     };

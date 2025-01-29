@@ -51,6 +51,7 @@ export default function Offers() {
                   loading={false}
                   purchasable={item?.purchasable === "always"}
                   offer={item?.compare_price}
+                  quantity={item?.quantity}
                 />
               </Grid>
             ))}

@@ -12,6 +12,8 @@ import { Facebook, Instagram, LinkedIn, WhatsApp } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 import logo from "assets/images/logo.png";
 import DownloadApp from "components/customs/DownloadApp";
+import { _terms } from "api/terms/terms";
+import { useQuery } from "react-query";
 
 function Footer() {
   const { t } = useTranslation("index");
@@ -22,20 +24,23 @@ function Footer() {
     { href: "/Products", title: t("Products") },
     { href: "/login", title: t("Log In") },
   ];
-
+  const { data: termsData, isLoading: isLoadingTerms } = useQuery(
+    ["terms"],
+    () => _terms.getTerms().then((res) => res?.data)
+  );
   return (
     <footer>
       <Container sx={{ py: 4, mt: 5 }}>
-      <Divider></Divider>
-        <Grid container sx={{mt:5}}>
+        <Divider></Divider>
+        <Grid container sx={{ mt: 5 }}>
           <Grid item xs={12} md={6} lg={3}>
             <Box sx={{ width: "10vw", mb: 3 }}>
               <img alt="logo" src={logo} style={{ width: "100%" }} />
             </Box>
             <Box sx={{ mb: 2 }}>
-              Thank you to the team at GOZLAN for allowing us to feature their
-              beautiful imagery in this demo. Head over to their official store
-              to shop their latest collection.z
+              {t(
+                "© 2025 Gozlan Jewelry. Exquisite craftsmanship, timeless elegance. Explore our collections and embrace the luxury of fine jewelry."
+              )}
             </Box>
             <Box sx={{ display: "flex" }}>
               <IconButton href="https://web.facebook.com" aria-label="facebook">
@@ -75,8 +80,9 @@ function Footer() {
             }}
           >
             <Typography variant="body1" color="initial">
-              USEFUL LINKS
+              {t("USEFUL LINKS")}
             </Typography>
+
             {MenuItems.map((item, index) => (
               <Button
                 size="small"
@@ -101,27 +107,28 @@ function Footer() {
               gap: 1,
             }}
           >
-            <Typography variant="body1" color="initial">
-              LET US HELP YOU
+            <Typography href={"/contact-us"} variant="body1" color="initial">
+              {t("LET US HELP YOU")}
             </Typography>
-            <Button variant={"text"} size="small">
-              Accessibility Statement
+            <Button href={"/profile/orders"} variant={"text"} size="small">
+              {t("Your Orders")}
             </Button>
-            <Button variant={"text"} size="small">
-              Your Orders
+            <Button href={"/store/offers"} variant={"text"} size="small">
+              {t("All Offers")}
             </Button>
-            <Button variant={"text"} size="small">
-              Returns & Replacements
+            <Button href={"/blog"} variant={"text"} size="small">
+              {t("Blogs")}
             </Button>
-            <Button variant={"text"} size="small">
-              Shipping Rates & Policies
-            </Button>
-            <Button variant={"text"} size="small">
-              Privacy Policy
-            </Button>
-            <Button variant={"text"} size="small">
-              Terms and Conditions
-            </Button>
+            {termsData?.terms?.map((item, index) => (
+              <Button
+                size="small"
+                variant={"text"}
+                key={index}
+                href={`/terms/${item.id}`}
+              >
+                {item.name}
+              </Button>
+            ))}
           </Grid>
           <Grid
             xs={12}
@@ -138,11 +145,10 @@ function Footer() {
             }}
           >
             <Typography variant="body1" color="initial">
-              DOWNLOAD OUR APPS
+              {t("DOWNLOAD OUR APPS")}
             </Typography>
             <DownloadApp />
           </Grid>
-   
           <Grid
             item
             xs="12"
@@ -154,7 +160,7 @@ function Footer() {
               justifyContent: "flex-start",
               flexDirection: { xs: "column", md: "row" },
             }}
-            >
+          >
             <Divider></Divider>
             <Typography sx={{ fontWeight: "300" }} variant="body3">
               {t("© 2025 Gozolan. All rights reserved.")}

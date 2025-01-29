@@ -18,7 +18,7 @@ export const useEditAddress = ({ handleClose, id }) => {
       .string()
       .email(t("Invalid email"))
       .required(t("Email is required")),
-    city: yup.string().required(t("City is required")),
+    // city: yup.string().required(t("City is required")),
     state: yup.string().required(t("State is required")),
     line_one: yup.string().required(t("Address is required")),
     delivery_instructions: yup.string(),

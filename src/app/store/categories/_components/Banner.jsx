@@ -2,14 +2,13 @@ import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 
 const BannerSection = ({ banner }) => {
-    console.log("banner",banner)
   return (
     <>
       <Box
         sx={{
           position: "relative",
           overflow: "hidden",
-          height: "250px",
+          minHeight: "250px",
           backgroundImage: `url(${banner?.backgroundImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -43,18 +42,6 @@ const BannerSection = ({ banner }) => {
           >
             {banner.subtitle}
           </Typography>
-          <Button
-            variant="text"
-            sx={{
-              color: "primary.main",
-              textDecoration: "underline",
-              fontWeight: "bold",
-              padding: "0",
-              fontSize: "14px",
-            }}
-          >
-            {banner.buttonText}
-          </Button>
         </Box>
       </Box>
     </>

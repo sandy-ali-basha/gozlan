@@ -3,7 +3,6 @@ import {
   Button,
   TextField,
   Typography,
-  Divider,
   Alert,
   Grid,
 } from "@mui/material";
@@ -17,6 +16,7 @@ import { Link } from "react-router-dom";
 export default function Login() {
   const { errors, register, t, handleSubmit, onSubmit, loading, error } =
     useLogin();
+    
   return (
     <Grid container sx={{ overflow: "hidden" }}>
       <Grid

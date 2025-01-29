@@ -83,11 +83,11 @@ export default function ContactUs() {
           sx={{ fontWeight: "bold", my: 4 }}
           color="text.primary"
         >
-          {t("lorem Diliga tresk dira. Ens biov dijevis.")}
+          {t("We'd Love to Hear From You!")}
         </Typography>
         <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
           {t(
-            "Diliga tresk dira. Ens biov dijevis. Diliga tresk dira. Ens biov dijevis."
+            "Whether you have a question about our products, need help with your order, or just want to say hello, our team is here to assist you!"
           )}
         </Typography>
       </Box>
@@ -96,7 +96,6 @@ export default function ContactUs() {
           <Box
             sx={{
               p: 2,
-
               mb: 4,
             }}
           >
@@ -143,11 +142,11 @@ export default function ContactUs() {
                 error={errors?.message}
                 helperText={errors?.message?.message || ""}
               />
-              <Box sx={{ textAlign: "center", mt: 4 ,mx:1}}>
+              <Box sx={{ textAlign: "center", mt: 4, mx: 1 }}>
                 {loading ? (
                   <ButtonLoader
                     variant="outlined"
-                    sx={{ mx: "auto" ,width:'100%'}}
+                    sx={{ mx: "auto", width: "100%" }}
                     type="submit"
                     loading={true}
                     disabled={loading}
@@ -157,7 +156,7 @@ export default function ContactUs() {
                 ) : (
                   <Button
                     variant="outlined"
-                    sx={{ mx: "auto",width:'100%' }}
+                    sx={{ mx: "auto", width: "100%" }}
                     type="submit"
                     disabled={loading}
                     onClick={() => handleSubmit(hanldeCreate)()}
@@ -186,7 +185,7 @@ export default function ContactUs() {
             <Facebook />
             <Link
               style={{ color: "initial", textDecoration: "none" }}
-              href="https://web.facebook.com/Dawaaalhayatco?_rdc=1&_rdr"
+              href="https://web.facebook.com"
               aria-label="facebook"
             >
               Facebook
@@ -204,7 +203,7 @@ export default function ContactUs() {
             <Instagram />
             <Link
               style={{ color: "initial", textDecoration: "none" }}
-              href="https://www.instagram.com/gozlan"
+              href="https://www.instagram.com/"
               aria-label="instagram"
             >
               Instagram
@@ -222,7 +221,7 @@ export default function ContactUs() {
             <LinkedIn />
             <Link
               style={{ color: "initial", textDecoration: "none" }}
-              href="https://www.linkedin.com/company/dawaa-alhayat/"
+              href="https://www.linkedin.com"
               aria-label="linkedin"
             >
               LinkedIn
@@ -240,12 +239,12 @@ export default function ContactUs() {
             <WhatsApp />
             <Link
               style={{ color: "initial", textDecoration: "none" }}
-              href="https://wa.me/+9647709445659"
+              href="https://wa.me/+905538080000"
               aria-label="whatsapp"
               target="_blank" // Opens in a new tab
               rel="noopener noreferrer" // Enhances security when opening in a new tab
             >
-              +9647709445659
+              +90 553 808 0000
             </Link>{" "}
           </Box>
           <Box
@@ -263,15 +262,15 @@ export default function ContactUs() {
               href="mailto:online@dawaaalhayat.com" // Correct mailto URL
               aria-label="Email"
             >
-              online@dawaaalhayat.com
+              info@gozlanjewelry.com
             </Link>{" "}
           </Box>
         </Grid>
         <Grid
           sx={{
             display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-end",
+            alignItems: "start",
+            justifyContent: "flex-start",
             flexDirection: "column",
           }}
           item
@@ -279,41 +278,23 @@ export default function ContactUs() {
         >
           <Box sx={{ width: { md: "100%", sm: "90vw" } }}>
             <iframe
-              title="map"
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d43592.783752407915!2d44.029617!3d36.21132!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4007239623882d59%3A0x168fa754f4658b3b!2z2LTYsdmD2Kkg2K_ZiNin2KEg2KfZhNit2YrYp9ipIC0gRGF3YWEgQWxoYXlhdCBjb21wYW55!5e1!3m2!1sar!2seg!4v1728900655861!5m2!1sar!2seg"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
               style={{
                 border: "0",
                 borderRadius: "0px",
                 width: "100%",
                 height: "70vh",
               }}
+              title="map"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20384.13070843873!2d28.840019102830563!3d41.012580339236116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa48f6efb5e25%3A0x6428a269c2adee7c!2zWWVuaWJvc25hIE1lcmtleiwgQmFow6dlbGlldmxlci_Ypdiz2LfZhtio2YjZhNiMINiq2LHZg9mK2Kc!5e1!3m2!1sar!2seg!4v1738090319576!5m2!1sar!2seg"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
             ></iframe>
+
             <Typography variant="body1" color="initial">
-              {t("Erbil Office:")} <br />
-              gozlan Company <br />
-              Buildind. No. 206, Shoresh St. Khanzad, Erbil, Iraq
+              gozlan <br />
+              İnci Sokak, No:340, Yenibosna Merkez, Istanbul, Turkey
             </Typography>
-          </Box>
-          <Box sx={{ width: "100%", mt: 3, display: "flex", gap: 1 }}>
-            <MapPin sx={{ pe: 1 }} />{" "}
-            <Typography variant="body1" color="initial">
-              {t("Baghdad Office:")}
-            </Typography>
-            <a href="https://maps.app.goo.gl/NgbhGFS5KkDjLGXDA" color="initial">
-              Building No. 66, Alkhadraa cross, Baghdad, Iraq
-            </a>
-          </Box>
-          <Box sx={{ width: "100%", mt: 3, display: "flex", gap: 1 }}>
-            <MapPin />{" "}
-            <Typography variant="body1" color="initial">
-              {t("Sulaymaniya office:")}
-            </Typography>
-            <a href="https://maps.app.goo.gl/bBXyAZ89f1pXREmJ7" color="initial">
-              Villa No.47, German Village 1, 60m St, Sulaymaniyah, Iraq
-            </a>
           </Box>
         </Grid>
       </Grid>
