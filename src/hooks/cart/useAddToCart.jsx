@@ -21,9 +21,8 @@ export const useAddToCart = () => {
     _cart
       .AddToCart({ data, cart_id })
       .then((res) => {
-        if (!cart_id) localStorage.setItem("cart_id", res?.data?.id);
-
         if (res?.code === 200) {
+          if (!cart_id) localStorage.setItem("cart_id", res?.data?.id);
           const currentCartCount = parseInt(localStorage.getItem("cart_count")) || 0;
           localStorage.setItem("cart_count", currentCartCount + 1);
           Swal.fire({

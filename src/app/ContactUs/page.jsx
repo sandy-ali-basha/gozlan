@@ -16,7 +16,6 @@ import { _contact } from "api/contact/contact";
 import * as yup from "yup";
 import ButtonLoader from "components/customs/ButtonLoader";
 import Swal from "sweetalert2";
-import { MapPin } from "react-feather";
 import {
   Facebook,
   Instagram,
@@ -185,7 +184,7 @@ export default function ContactUs() {
             <Facebook />
             <Link
               style={{ color: "initial", textDecoration: "none" }}
-              href="https://web.facebook.com"
+              href="https://web.facebook.com/gozlanjewelry"
               aria-label="facebook"
             >
               Facebook
@@ -203,29 +202,11 @@ export default function ContactUs() {
             <Instagram />
             <Link
               style={{ color: "initial", textDecoration: "none" }}
-              href="https://www.instagram.com/"
+              href="https://www.instagram.com/gozlanjewelry"
               aria-label="instagram"
             >
               Instagram
             </Link>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "start",
-              my: 2,
-              gap: 1,
-              color: "text.main",
-            }}
-          >
-            <LinkedIn />
-            <Link
-              style={{ color: "initial", textDecoration: "none" }}
-              href="https://www.linkedin.com"
-              aria-label="linkedin"
-            >
-              LinkedIn
-            </Link>{" "}
           </Box>
           <Box
             sx={{
@@ -259,7 +240,7 @@ export default function ContactUs() {
             <Mail />
             <Link
               style={{ color: "initial", textDecoration: "none" }}
-              href="mailto:online@dawaaalhayat.com" // Correct mailto URL
+              href="mailto:info@gozlanjewelry.com" // Correct mailto URL
               aria-label="Email"
             >
               info@gozlanjewelry.com

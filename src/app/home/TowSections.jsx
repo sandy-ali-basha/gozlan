@@ -21,6 +21,15 @@ const TwoSections = ({ data, isLoading }) => {
               color: "white",
               backgroundImage: isLoading ? "none" : `url(${item?.image})`,
               backgroundColor: isLoading ? "#e0e0e0" : "transparent",
+              "&::before": {
+                content: '""', // Corrected content
+                width: "100%",
+                height: "100%",
+                position: "absolute",
+                background: "#ffffff24",
+                top: 0,
+                left: 0,
+              },
             }}
           >
             {isLoading && (

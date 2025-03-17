@@ -1,15 +1,8 @@
-import {
-  Box,
-  Button,
-  Divider,
-  Skeleton,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Divider, Skeleton, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react"; // Correct import
 import { Autoplay } from "swiper/modules"; // Import Lazy module
-import sliderImg from "assets/images/slide (1).jpg";
 import Banner from "./home/Banner";
 import Categories from "./home/Categories";
 import OfferSection from "./home/OfferSection";
@@ -37,15 +30,15 @@ export default function Home() {
     : data?.home_sections?.filter((section) => section.type === "banner") || [];
 
   return (
-    <Box sx={{ marginTop: "-100px" }}>
+    <Box >
       {isLoading ? (
         <Skeleton variant="rectangular" width={"100vw"} height={"100vh"} />
       ) : (
         <Swiper
-          // autoplay={{
-          //   delay: 2500,
-          //   disableOnInteraction: false,
-          // }}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
           lazy={true}
           modules={[Autoplay]}
         >
@@ -63,7 +56,7 @@ export default function Home() {
                         }}
                       >
                         <img
-                          src={sliderImg}
+                          src={item?.image}
                           alt={`Slide`}
                           style={{
                             objectFit: "cover",
@@ -80,7 +73,7 @@ export default function Home() {
                             px: { md: 4, xs: 0 },
                             display: "flex",
                             flexDirection: "column",
-                            justifyContent: "center",
+                            justifyContent: "flex-end",
                             alignItems: "center",
                             color: "black",
                             textAlign: "center",
@@ -89,23 +82,23 @@ export default function Home() {
                           }}
                         >
                           <Typography
-                            variant="h4"
-                            color="white"
-                            sx={{ width: { xs: "90%", md: "70%" } }}
+                            sx={{
+                              width: { xs: "80%", md: "70%" },
+                              fontSize: { md: "2rem", xs: "1rem" },
+                              fontWeight:'bolder'
+                            }}
+                            variant="p" 
                           >
+
                             {item.title}
                           </Typography>
-                          <Typography
-                            variant="p"
-                            color="white"
-                            sx={{ width: { xs: "90%", md: "70%" } }}
-                          >
+                          <Typography variant="p" sx={{ width: "80%",fontWeight:'600' }} >
                             {item.description}
                           </Typography>
                           <br />
                           <Button
                             variant="text"
-                            sx={{ mt: 4, color: "white" }}
+                            sx={{ mt: 4 }}
                             href={item.cta_link}
                           >
                             {t("Shop collection")}
@@ -146,7 +139,7 @@ export default function Home() {
         </Typography>
         <BestSellers />
       </Box>
-      
+
       <Divider></Divider>
 
       {banner.map((section, idx) => (

@@ -8,21 +8,20 @@ import { useTranslation } from "react-i18next";
 export default function SearchInput({ searchResults, setSearchResults }) {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const handleSearch = async (event) => {
-    if (event.key === "Enter") {
-      try {
-        // Making an API call with axios
-        const response = await _axios.get(`/search-by-name`, {
-          params: {
-            name: searchTerm,
-          },
-        });
+  const handleSearch = async (e) => {
+    setSearchTerm(e.target.value);
+    try {
+      // Making an API call with axios
+      const response = await _axios.get(`/search-by-name`, {
+        params: {
+          name: searchTerm,
+        },
+      });
 
-        // Set the search results from the API response
-        setSearchResults(response.data);
-      } catch (error) {
-        console.error("Error fetching search results", error);
-      }
+      // Set the search results from the API response
+      setSearchResults(response.data);
+    } catch (error) {
+      console.error("Error fetching search results", error);
     }
   };
   const { t } = useTranslation("index");
@@ -46,8 +45,7 @@ export default function SearchInput({ searchResults, setSearchResults }) {
           placeholder={t("Search…")}
           inputProps={{ "aria-label": "search" }}
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          onKeyPress={handleSearch} // Trigger search on "Enter"
+          onChange={(e) => handleSearch(e)}
         />
       </Box>
 

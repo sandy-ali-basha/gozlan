@@ -50,7 +50,6 @@ const Categories = ({ data, isLoading }) => {
                     left: "0px",
                     width: "100%",
                     height: "100%",
-                    color: "white",
                     padding: "1rem",
                     textAlign: "center",
                     display: "flex",
@@ -58,6 +57,15 @@ const Categories = ({ data, isLoading }) => {
                     justifyContent: "center",
                     alignItems: "center",
                     background: isLoading ? "rgba(0,0,0,0.1)" : "none",
+                    "&::before": {
+                      content: '""', // Corrected content
+                      width: "100%",
+                      height: "100%",
+                      position: "absolute",
+                      background: "#ffffff24",
+                      top: 0,
+                      left: 0,
+                    },
                   }}
                 >
                   {isLoading ? (
@@ -66,18 +74,17 @@ const Categories = ({ data, isLoading }) => {
                       <Skeleton width="80%" height={20} />
                     </>
                   ) : (
-                    <>
+                    <Box sx={{zIndex:"2",position:'relative'}}>
                       <Typography
                         variant="h6"
-                        color="white"
-                        sx={{ fontWeight: "bold" }}
+                        sx={{ fontWeight: "bolder" }}
                       >
                         {category?.title}
                       </Typography>
-                      <Typography color="white" variant="body2">
+                      <Typography variant="body2"  >
                         {category?.description}
                       </Typography>
-                    </>
+                    </Box>
                   )}
                 </Box>
               </Box>

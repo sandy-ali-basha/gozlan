@@ -43,7 +43,6 @@ export const useCategories = () => {
     if (newValue === brandsTabIndex) {
       setFetchBrands(true);
       setSelectedCategoryId(null);
-      console.log(brandsTabIndex, newValue, fetchBrands);
     } else {
       setFetchBrands(false);
       setSelectedCategoryId(data.product_attributes[newValue].id);

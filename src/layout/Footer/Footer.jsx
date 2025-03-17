@@ -34,7 +34,7 @@ function Footer() {
         <Divider></Divider>
         <Grid container sx={{ mt: 5 }}>
           <Grid item xs={12} md={6} lg={3}>
-            <Box sx={{ width: "10vw", mb: 3 }}>
+            <Box sx={{ width: {md:"10vw",xs:"50vw"}, mb: 3 }}>
               <img alt="logo" src={logo} style={{ width: "100%" }} />
             </Box>
             <Box sx={{ mb: 2 }}>
@@ -43,21 +43,18 @@ function Footer() {
               )}
             </Box>
             <Box sx={{ display: "flex" }}>
-              <IconButton href="https://web.facebook.com" aria-label="facebook">
+              <IconButton href="https://web.facebook.com/gozlanjewelry" aria-label="facebook">
                 <Facebook />
               </IconButton>
               <IconButton
-                href="https://www.instagram.com"
+                href="https://www.instagram.com/gozlanjewelry"
                 aria-label="instagram"
               >
                 <Instagram />
               </IconButton>
 
-              <IconButton href="https://www.linkedin.com" aria-label="linkedin">
-                <LinkedIn />
-              </IconButton>
               <IconButton
-                href="https://wa.me/+1080749941"
+                href="https://wa.me/+905538080000"
                 aria-label="whatsapp"
                 target="_blank"
                 rel="noopener noreferrer"

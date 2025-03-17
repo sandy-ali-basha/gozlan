@@ -39,7 +39,7 @@ export default function ProductCard({
     <Card
       sx={{
         boxShadow: 0,
-        height: "70vh",
+        height: {md:"70vh",sm:"60vh"},
         borderRadius: "0px",
         "&:hover .price": {
           transform: isTouchDevice ? "none" : "translateY(100%)",
@@ -60,7 +60,7 @@ export default function ProductCard({
               position: "relative",
               overflow: "hidden",
               width: "100%",
-              height: "40vh",
+              height: '40vh'
             }}
           >
             <CardMedia
@@ -89,7 +89,7 @@ export default function ProductCard({
 
         {/* Product Name */}
         <Typography variant="body1" color="initial" sx={{ py: 2 }}>
-          {loading ? <Skeleton width="80%" height={20} /> : productName?.split(" ").slice(0, 7).join(" ") + " ..."}
+          {loading ? <Skeleton width="80%" height={20} /> : productName?.split(" ").slice(0, 6).join(" ") + " ..."}
         </Typography>
 
         {/* Price */}
@@ -135,7 +135,7 @@ export default function ProductCard({
                 transform: isTouchDevice ? "none" : "translate(-50%, 100%)",
                 transition: "transform 0.3s ease-in-out",
                 cursor: "pointer",
-                mt: isTouchDevice ? 1 : 0, // Adds space below price on touch devices
+                mt: isTouchDevice ? 4 : 0, // Adds space below price on touch devices
               }}
               onClick={() => handleAddToCart(id)}
             >

@@ -42,7 +42,7 @@ export default function Category() {
     backgroundImage: bannerImg, // Replace with your image path
     saleText: "CYBER MONDAY SALE",
   };
-  
+
   const SortFilter = () => {
     return (
       <FormControl
@@ -65,6 +65,8 @@ export default function Category() {
   };
 
   const [searchResults, setSearchResults] = useState([]);
+
+  console.log("searchResults", searchResults);
 
   return (
     <Box sx={{ px: { md: 4, xs: 1 } }}>
