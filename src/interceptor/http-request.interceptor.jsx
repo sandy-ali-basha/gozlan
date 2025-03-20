@@ -14,9 +14,7 @@ export const HttpRequestInterceptor = () => {
         request.headers.Accept = "application/json";
         // Set the i18n.language current language using i18n's active language
 
-        request.headers.locale = ["en", "ar", "kr"].includes(i18n.language)
-          ? i18n.language
-          : "en";
+        request.headers.locale = ["en", "ar"].includes(i18n.language) ? i18n.language  : "en";
       }
 
       return request;

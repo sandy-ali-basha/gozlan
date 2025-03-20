@@ -54,6 +54,7 @@ export default function CAccordion({ data, handleCheked }) {
   const { t } = useTranslation("index");
 
   const lang = localStorage.getItem("i18nextLng");
+  const displayLang = lang === "tr" ? "en" : lang;
 
   return (
     <div>
@@ -73,7 +74,7 @@ export default function CAccordion({ data, handleCheked }) {
             aria-controls="panel-content"
             id={item.id.toString()}
           >
-            {item?.translations?.find((t) => t.locale === i18n.language)?.title}
+            {item?.translations?.find((t) => t.locale === displayLang)?.title}
           </AccordionSummary>
           {AttrValuesLoading ? (
             <AccordionDetails>{t("Loading...")}</AccordionDetails>
@@ -82,11 +83,7 @@ export default function CAccordion({ data, handleCheked }) {
               <RadioGroup value={selectedValueId} onChange={handleRadioChange}>
                 {AttrValuesData?.product_attributes_values?.map(
                   (option, idx) => {
-                    console.log(lang)
-                    console.log(
-                      "d",
-                      option.translations?.find((t) => t.locale === lang)?.value
-                    );
+                    console.log(lang);
                     return (
                       <>
                         <FormControlLabel
@@ -99,8 +96,9 @@ export default function CAccordion({ data, handleCheked }) {
                           id={option.id}
                           control={<Radio value={option.id} />}
                           label={
-                            option.translations?.find((t) => t.locale === lang)
-                              ?.value
+                            option.translations?.find(
+                              (t) => t.locale === displayLang
+                            )?.value
                           }
                         />
                       </>

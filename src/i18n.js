@@ -7,21 +7,25 @@ import indexAr from "./translation/ar/index.json";
 import indexEn from "./translation/en/index.json";
 import authAr from "./translation/ar/auth.json";
 import authEn from "./translation/en/auth.json";
-import aboutEn from "./translation/en/about.json";
-import aboutAr from "./translation/ar/about.json";
+import navbarTr from "./translation/tr/navbar.json";
+import indexTr from "./translation/tr/index.json";
+import authTr from "./translation/tr/auth.json";
 
 const resources = {
   en: {
     navbar: { ...navbarEn },
     index: { ...indexEn },
     auth: { ...authEn },
-    about: { ...aboutEn },
   },
   ar: {
     navbar: { ...navbarAr },
     index: { ...indexAr },
     auth: { ...authAr },
-    about: { ...aboutAr },
+  },
+  tr: {
+    navbar: { ...navbarTr },
+    index: { ...indexTr },
+    auth: { ...authTr },
   }
 };
 
@@ -35,7 +39,7 @@ i18n
     fallbackLng: false, // Disable fallback language
     resources,
     debug: true,
-    ns: ["navbar", "index", "auth", "about"],
+    ns: ["navbar", "index", "auth"],
     defaultNS: "navbar",
     interpolation: {
       escapeValue: false, // React already escapes values to prevent XSS

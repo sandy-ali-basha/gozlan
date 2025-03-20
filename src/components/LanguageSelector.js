@@ -69,7 +69,7 @@ const LanguageSelector = () => {
       >
         <MenuItem onClick={() => handleLanguageChange("en")}>English</MenuItem>
         <MenuItem onClick={() => handleLanguageChange("ar")}>عربي</MenuItem>
-        {/* <MenuItem onClick={() => handleLanguageChange("kr")}>کوردی</MenuItem> */}
+        <MenuItem onClick={() => handleLanguageChange("tr")}>Türkçe</MenuItem>
       </Menu>
     </Box>
   );

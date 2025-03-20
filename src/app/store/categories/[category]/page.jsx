@@ -37,10 +37,10 @@ export default function Category() {
 
   const banners = {
     id: 1,
-    title: "Diamonds are forever—and so are you",
-    subtitle: "Embrace the Unseen Magic of Uniqueness...",
+    title: t("Diamonds are forever—and so are you"),
+    subtitle: t("Embrace the Unseen Magic of Uniqueness..."),
     backgroundImage: bannerImg, // Replace with your image path
-    saleText: "CYBER MONDAY SALE",
+    saleText: t("CYBER MONDAY SALE"),
   };
 
   const SortFilter = () => {
@@ -65,8 +65,6 @@ export default function Category() {
   };
 
   const [searchResults, setSearchResults] = useState([]);
-
-  console.log("searchResults", searchResults);
 
   return (
     <Box sx={{ px: { md: 4, xs: 1 } }}>

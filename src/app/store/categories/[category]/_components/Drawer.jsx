@@ -16,7 +16,6 @@ const SideDrawer = ({
 }) => {
   const { t } = useTranslation("index");
 
-  console.log("searchResults", searchResults);
   return (
     <Box
       sx={{

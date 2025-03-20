@@ -6,7 +6,7 @@ export const _show_product = {
     return _axios
       .get(`product/${id}`, {
         headers: {
-          lang: ["en", "ar", "kr"].includes(localStorage.getItem("i18nextLng"))
+          lang: ["en", "ar"].includes(localStorage.getItem("i18nextLng"))
             ? localStorage.getItem("i18nextLng")
             : "en",
           ...HttpRequestInterceptor(),
@@ -18,7 +18,7 @@ export const _show_product = {
     return _axios
       .get(`product/${id}/accordion`, {
         headers: {
-          lang: ["en", "ar", "kr"].includes(localStorage.getItem("i18nextLng"))
+          lang: ["en", "ar"].includes(localStorage.getItem("i18nextLng"))
             ? localStorage.getItem("i18nextLng")
             : "en",
           ...HttpRequestInterceptor(),
@@ -30,7 +30,7 @@ export const _show_product = {
     return _axios
       .get(`product/slider/${id}`, {
         headers: {
-          lang: ["en", "ar", "kr"].includes(localStorage.getItem("i18nextLng"))
+          lang: ["en", "ar"].includes(localStorage.getItem("i18nextLng"))
             ? localStorage.getItem("i18nextLng")
             : "en",
           ...HttpRequestInterceptor(),
